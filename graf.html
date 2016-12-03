@@ -1,6 +1,6 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"> </script>
    <link rel="stylesheet" href="stil.css">
-
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <html>
 <body>
     <h1>DNS</h1>
@@ -12,12 +12,14 @@
 </g>
 </svg>
 
-<a href="http://google.com" id="mylink" onclick="f1();" target="_blank">google</a>
-<rect id="t_box"   x="193.22px" y="100px" width="20" height="20" fill="yellow">
+
+
+
 <div class="dropdown">
-  <button id="minknapp" onclick="myFunctione()" class="dropbtn">Dropdown</button>
+  <button id="minknapp" style="opacity: 0 "  onclick="toggleMenu();" class="dropbtn">Dropdasdasown</button>
   <div id="myDropdown" class="dropdown-content">
-    <a href="#" id="mylink1" onclick="f1();" >Link 1</a>
+    <a href="#" target="_blank" id="mylink1" >Kursutveckling</a>
+    <a href="#" target="_blank" id="mylink2" >Kursplan</a>
   </div>
 </div>
 
@@ -49,7 +51,7 @@
 </g>
 <!-- D1 -->
 <g id="node5" class="node"><title>D1</title>
-<ellipse fill="#acc5f6" stroke="black" stroke-width="0" cx="193.22" cy="-234" rx="54" ry="18"></ellipse>
+<ellipse id="Steffe" fill="#acc5f6" stroke="black" stroke-width="0" cx="193.22" cy="-234" rx="54" ry="18"></ellipse>
 <text text-anchor="middle" x="193.22" y="-231" font-family="Latin Modern Sans" font-size="10.00">Årskurs 1</text>
 </g>
 <!-- Valbar -->
@@ -934,7 +936,9 @@
 <div class="popup" onclick="myFunction()">Click me!
   <span class="popuptext" id="myPopup">Popup text...</span>
 </div>
-<script src="funkis.js"></script>
+<script src="funkis.js">
+</script>
+
 
 
 

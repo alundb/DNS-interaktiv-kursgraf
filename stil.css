@@ -78,10 +78,16 @@
     text-decoration: none;
     display: block;
 }
+.dropdown-content b {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #f1f1f1}
-
+.dropdown-content b:hover {background-color: #f1f1f1}
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
 
@@ -94,7 +100,7 @@
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
-    from {opacity: 0;} 
+    from {opacity: 0;}
     to {opacity: 1;}
 }
 
