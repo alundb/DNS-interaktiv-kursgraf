@@ -2,16 +2,19 @@ var menu = [
 	{
 		title: 'Kursutveckling',
 		action: function(elm, d, i) {
-			//var courseName = $(this)[0].childNodes[0].textContent;
+			var courseName = $(elm)[0].childNodes[0].textContent;
 			console.log('Item #1 clicked!');
-			console.log('The data for this circle is: ' + $(elm)[0].childNodes[0].textContent);
+			console.log('The data for this circle is: ' + courseName);
+
 		}
 	},
 	{
 		title: 'Kursplan',
 		action: function(elm, d, i) {
+			var courseName = $(elm)[0].childNodes[0].textContent;
 			console.log('You have clicked the second item!');
-			console.log('The data for this circle is: ' + d);
+			console.log('The data for this circle is: ' + map[courseName]);
+			window.open(map[courseName]);
 		}
 	}
 ]
@@ -25,7 +28,6 @@ d3.select(p).on("contextmenu", ""); //Remove contextMenu menu feuture from maste
 //d3.selectAll('g').on("contextmenu", d3.contextMenu(menu));
 // var p =document.getElementById("node1").childNodes[0];
 // d3.select(p).on("contextmenu", d3.contextMenu(menu));
-
 // $("g").click(function(evt) {
 // 	var e = evt.target;
 //
@@ -80,31 +82,11 @@ d3.select(p).on("contextmenu", ""); //Remove contextMenu menu feuture from maste
 
 
 
-function myFunction() {
- window.open(map['fysik']);
 
-}
-
-function toggleMenu() {
-var link = document.getElementById("myDropdown");
-	//alert("hello");
-	if (link.style.display !== 'none'){
-			link.style.display = 'none'
-	}
-	else {
-		link.style.display = 'block'
-	}
-}
-
-
-function f1(){
-
-    document.getElementById("mylink2").setAttribute("href", "loopes.php");
-  }
-	var linkPre ="https://student.portal.chalmers.se/sv/chalmersstudier/minkursinformation/Sidor/SokKurs.aspx?course_id="
-	var map= {
-	    'fysik': linkPre + "24421&parsergrp=3",
-	    'el': linkPre + "24725&parsergrp=3",
-	    'map_name_3': "hej2",
-	    'map_name_4':"hej3"
-	    }
+var linkPre ="https://student.portal.chalmers.se/sv/chalmersstudier/minkursinformation/Sidor/SokKurs.aspx?course_id="
+var map= {
+	  'fysik': linkPre + "24421&parsergrp=3",
+	  'el': linkPre + "24725&parsergrp=3",
+	  'map_name_3': "hej2",
+	  'map_name_4':"hej3"
+	  }
