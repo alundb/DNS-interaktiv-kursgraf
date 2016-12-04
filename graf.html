@@ -1,6 +1,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"> </script>
    <link rel="stylesheet" href="stil.css">
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<link rel="stylesheet" href="d3-context-menu.css" />
+<script src="d3-context-menu.js"></script>
 <html>
 <body>
     <h1>DNS</h1>
@@ -23,7 +25,7 @@
   </div>
 </div>
 
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1979pt" height="1422pt" viewBox="72.00 72.00 1907.26 1350.00">
+<svg xmlns="http://www.w3.org/2000/svg" id="masterelem" xmlns:xlink="http://www.w3.org/1999/xlink" width="1979pt" height="1422pt" viewBox="72.00 72.00 1907.26 1350.00">
 <g id="graph0" class="graph" transform="scale(0.671218 0.671218) rotate(0) translate(111.268 2007.27)">
 <title>%3</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-1900 2730.22,-1900 2730.22,4 -4,4"></polygon>
@@ -938,6 +940,49 @@
 </div>
 <script src="funkis.js">
 </script>
+<script>
+// var menu = [
+// 	{
+// 		title: 'Item #1',
+// 		action: function(elm, d, i) {
+// 			console.log('Item #1 clicked!');
+// 			console.log('The data for this circle is: ' + d);
+// 		}
+// 	},
+// 	{
+// 		title: 'Item #2',
+// 		action: function(elm, d, i) {
+// 			console.log('You have clicked the second item!');
+// 			console.log('The data for this circle is: ' + d);
+// 		}
+// 	}
+// ]
+//
+// var data = [1, 2, 3];
+//
+//  var h = d3.select('masterelem')
+//  	console.log(h);
+//
+// // 	.attr('width', 200)
+// // 	.attr('height', 400)
+// // 	.append('g');
+//
+// h.selectAll('g')
+// 	.data(data)
+// 	.enter()
+// 	.append('circle')
+// 	.attr('r', 30)
+// 	.attr('fill', 'steelblue')
+// 	.attr('cx', function(d) {
+// 		return 100;
+// 	})
+// 	.attr('cy', function(d) {
+// 		return d * 100;
+// 	})
+// 	.on('contextmenu', d3.contextMenu(menu));
+</script>
+
+
 
 
 
