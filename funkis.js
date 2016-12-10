@@ -19,11 +19,62 @@ var menu = [
 	}
 ]
 
+//graphviz_text =  "digraph { a -> b; }";
+// graphviz_text =  d3.text("kursgraf.dot", function(error, text){
+// 	//console.log(text);
+// 	document.body.innerHTML += Viz(text, "svg");
+// });
 
-var x = d3.selectAll('g');
-x.on("contextmenu", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
-var p =document.getElementById("graph0");
-d3.select(p).on("contextmenu", ""); //Remove contextMenu menu feuture from master element.
+//var txtFile = kaffe.txt;
+
+
+function waitSeconds(iMilliSeconds) {
+    var counter= 0
+        , start = new Date().getTime()
+        , end = 0;
+    while (counter < iMilliSeconds) {
+        end = new Date().getTime();
+        counter = end - start;
+    }
+}
+
+waitSeconds(500); //Delay is needed, otherwise window.onload wont have time to notice the change. 
+//
+
+
+
+//document.body.innerHTML += Viz(graphviz_text, "svg");
+
+//
+// var x = d3.selectAll('g');
+// console.log(x);
+
+ //x.on("mousedown", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
+ //x.on("contextmenu", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
+ //var p =document.getElementById("graph0");
+ //d3.select(p).on("mousedown", ""); //Remove contextMenu menu feuture from master element.
+
+// x.on("mousedown", function (d){
+// d3.contextMenu(menu);
+//
+// });
+
+
+ // $("wrapper").click(function(evt) {
+ //  //if ($(this).attr("id")  != "graph0") {
+ // 			alert("hello");
+ // 		//$("g").on("mousedown",  d3.contextMenu(menu));
+ // 		//d3.contextMenu(menu);
+ // 	//}
+ // });
+
+
+ //Add contextmenu to all nodes and eges.
+// var p =document.getElementById("graph0");
+// d3.select(p).on("mousedown", ""); //Remove contextMenu menu feuture from master element.
+
+
+
 
 //d3.selectAll('g').on("contextmenu", d3.contextMenu(menu));
 // var p =document.getElementById("node1").childNodes[0];
