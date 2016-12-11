@@ -1,15 +1,20 @@
 digraph {
     //nodesep=1
-    size="25.5, 17.75"
+    concentrate=true;
+    //[tailport=n];
+    //constraint=true;
+    size="30, 20"
         ratio=fill
         graph[margin="1,1"]
-        //ranksep = 0.01
+        ranksep = 0.001
         rankdir = LR
 
-        //nodesep=0.1
+        edge[sametail=t1, samehead=h1];
+        tailport=sw
+        nodesep=0.1
         //fixedsize=true
         //K=10
-        splines=true
+        splines=true;
         overlap=prism
         //arrowsize=10.0
         node [fontname="Latin Modern Sans", fontsize=10, width=1.5]
@@ -18,6 +23,9 @@ digraph {
         node [style="solid,filled"]
 
         subgraph Legend {
+        ordering=out
+
+          tailport=se
             node [pin=true]
             label = "Teckenförklaring"
             style=tapered;
@@ -26,7 +34,7 @@ digraph {
             DM2 [fillcolor = "#68E331", label="Master CSN", penwidth=0, pos="1,2!", pin=true]
             DM1 [fillcolor = "#E33D31", label="Master CSALL", penwidth=0]
             D3 [fillcolor = "#BC4BEC", label="Årskurs 3", penwidth=0]
-            D2 [fillcolor = "#FFD942", label="Årskurs 2", penwidth=0]
+            D2 [fillcolor = "#20B2AA", label="Årskurs 2", penwidth=0]
             D1 [fillcolor = "#ACC5F6", label="Årskurs 1", penwidth=0]
 
             Valbar [style="dashed", penwidth=2]
@@ -40,8 +48,10 @@ digraph {
         }
 
         subgraph TKDAT1 {
+          //concentrate=true;
             label = "TKDAT-1"
                 // rank = same
+                nodesep=10
                 node [fillcolor="#ACC5F6"]
                 haskell  [label = "Funktionell\nprogrammering"]
                 diskmat  [label = "Diskret\nmatematik"]
@@ -52,12 +62,15 @@ digraph {
                 datakom  [label = "Data-\nkommunikation"]
                 oop      [label = "Objektorienterad\nprogrammering"]
         }
-
+        //edge[sametail=t1,samehead=h1]
         diskmat -> digodat
             diskmat -> haskell
             digodat -> mop
 
             subgraph TKDAT2 {
+            //edge[samehead=h2, sametail=t2];
+            //edge[sametail=t2];
+            tailport=se
                 label = "TKDAT-2"
                     // rank = same
                     node [fillcolor="#FFD942"]
@@ -74,7 +87,7 @@ digraph {
                     }
                     dst      [ label = "Datorsystem-\nteknik"]
             }
-        mop -> dtekproj
+            mop -> dtekproj
             haskell -> dstrukt
             oop -> dstrukt
             oop -> concurrent
@@ -83,6 +96,7 @@ digraph {
             analys -> fysik
             linalg -> matstat
             analys -> matstat
+            //edge[sametail=t2,samehead=h2];
             diskmat -> matstat
             analys -> el
             haskell -> matdom
@@ -111,7 +125,7 @@ digraph {
                         deskonstr  [label = "Design/konstruktion\nav grafiska gränssnitt"]
                     }
             }
-
+            //edge[sametail=t2,samehead=h2]
         analys -> elektronik
             el -> elektronik
             tss -> regler
@@ -156,29 +170,46 @@ digraph {
                         langsecurity [label = "Language-based\nsecurity"]
                     }
             }
-        algoritmer -> advAlg
+            //edge[sametail=t3,samehead=h3]
+            algoritmer -> advAlg
             matstat -> advAlg
+            edge[sametail=t3,samehead=h1]
             linalg -> advAlg
+            edge[sametail=t1,samehead=h1]
             mop -> prolang
             dstrukt -> prolang
             algoritmer -> ml
             prolang -> paraFunc
+            edge[sametail=t4,samehead=h1];
             diskmat -> models
+            edge[sametail=t1,samehead=h1];
             logik -> models
+            //edge[sametail=t6,samehead=h6]
             diskmat -> crypto
             dstrukt -> crypto
             oop -> prolang
+            edge[sametail=t2,samehead=h1]
             haskell -> types
+            edge[sametail=t1,samehead=h1]
             logik -> types
             types -> models
             algoritmer -> discopt
+            edge[sametail=t2,samehead=h1];
             linalg -> discopt
+            edge[sametail=t1,samehead=h1];
+
+            edge[sametail=t2,samehead=h1];
             concurrent -> softEng
+            edge[sametail=t1,samehead=h1];
             dstrukt -> ml
             logik -> softEng
-            diskmat -> logik [minlen = 3]
-            analys -> ml [weight=10]
+            edge[sametail=t3,samehead=h1]
+            diskmat -> logik  [minlen = 3]
+            edge[sametail=t1,samehead=h1];
+            analys -> ml  [weight=10]
+            edge[sametail=t3,samehead=h1]
             matstat -> ml
+            edge[sametail=t1,samehead=h1]
             linalg -> ml
             haskell -> advFunc
             prolang -> advFunc
@@ -186,7 +217,9 @@ digraph {
             algoritmer -> ai
             dstrukt -> compilerConst
             prolang -> langsecurity
+            edge[sametail=t3,samehead=h1];
             dstrukt -> langsecurity
+            edge[sametail=t1,samehead=h1];
             prolang -> compilerConst
 
             subgraph CSN {
@@ -244,7 +277,9 @@ digraph {
                 flervar -> regler
                 dstrukt -> algoritmer
                 haskell -> algoritmer
+                edge[sametail=t2,samehead=h1];
                 diskmat -> algoritmer
+                edge[sametail=t1,samehead=h1];
                 matstat -> algoritmer
 
 //                lolnode [label="", image="sndlogo.svg"]

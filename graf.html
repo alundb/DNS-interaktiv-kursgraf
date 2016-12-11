@@ -7,27 +7,8 @@
 
 <html>
 <body>
-    <h1>DNeS</h1>
-    <h2>Den graffffigaste grafen</h2>
-    <div id="wrapper"></div>
-    <script src="addSvg.js">
-      </script>
-      <script src="funkis.js">
-          </script>
+    <h1>DNeeS</h1>
+    <h2>Den grafigaste grafen</h2>
+    <script src="funkis.js"></script>
 </body>
-<script type="text/javascript">
-
-window.onload = addListeners;
-function addListeners(){
-  var x = d3.selectAll('g');
-  console.log(x);
-  x.on("mousedown", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
-  var p =document.getElementById("graph0");
-  d3.select(p).on("mousedown", ""); //Remove contextMenu menu feuture from master element.
-}
-
-</script>
-
-
-
 </html>
