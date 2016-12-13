@@ -7,6 +7,18 @@
 
 <html>
 <body>
+
+  <defs>
+    <filter id="f2" x="0" y="0" width="200%" height="200%">
+      <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
+      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
+      <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+    </filter>
+  </defs>
+  <rect width="90" height="90" stroke="green" stroke-width="3"
+  fill="yellow" filter="url(#f2)" />
+
+
     <h1>DNeeS</h1>
     <h2>Den grafigaste grafen</h2>
     <script src="funkis.js"></script>
