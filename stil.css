@@ -21,6 +21,15 @@
     margin-left: -80px;
 }
 
+/*.node ellipse {*/
+/*    box-shadow: 20px 20px 5px 0px #000000;*/
+/*    fill: red !important;*/
+/*}*/
+
+.node {
+    cursor: pointer;
+}
+
 /* Popup arrow */
 .popup .popuptext::after {
     content: "";
