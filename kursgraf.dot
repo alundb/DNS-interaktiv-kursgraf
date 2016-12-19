@@ -1,31 +1,37 @@
 digraph {
+
     //nodesep=1
-    concentrate=true;
+    //concentrate=true;
     //[tailport=n];
-    //constraint=true;
-    size="30, 20"
+    constraint=true;
+
         ratio=fill
         graph[margin="1,1"]
-        ranksep = 0.001
+        ranksep = 1
         rankdir = LR
+        //graph [layout = twopi]
 
-        edge[sametail=t1, samehead=h1];
-        tailport=sw
-        nodesep=0.1
-        //fixedsize=true
+        edge[sametail=t1];
+        //node [headport=sw];
+        nodesep=0.05
+        ranksep = 0.2
+        fixedsize=true
         //K=10
-        splines=true;
-        overlap=prism
+        //[splines=ortho, overlap = false];
+        //graph [splines="ortho", nodesep = "0.01", overlap = prism];
+        //overlap=prism;
         //arrowsize=10.0
-        node [fontname="Latin Modern Sans", fontsize=10, width=1.5]
+        //splines=true
+        node [fontname="Latin Modern Sans", fontsize=15]
         fontname="Latin Modern Sans"
 
         node [style="solid,filled"]
+        //edge[penwidth=1.5];
 
         subgraph Legend {
         ordering=out
 
-          tailport=se
+          //tailport=se
             node [pin=true]
             label = "Teckenförklaring"
             style=tapered;
@@ -42,16 +48,17 @@ digraph {
         }
 
         subgraph Fulhack {
-            node[shape=none, width=0, height=0, label=""];
+            node[shape=none, width=1, height=0, label="",  style=invis];
             edge[dir=none, style=invis];
-            L1 -> L2 -> L3 -> L4 -> L5 -> L6
+            L1 ->L1
         }
+
 
         subgraph TKDAT1 {
           //concentrate=true;
             label = "TKDAT-1"
                 // rank = same
-                nodesep=10
+
                 node [fillcolor="#ACC5F6"]
                 haskell  [label = "Funktionell\nprogrammering"]
                 diskmat  [label = "Diskret\nmatematik"]
@@ -63,7 +70,7 @@ digraph {
                 oop      [label = "Objektorienterad\nprogrammering"]
         }
         //edge[sametail=t1,samehead=h1]
-        diskmat -> digodat
+            diskmat -> digodat
             diskmat -> haskell
             digodat -> mop
 
@@ -145,6 +152,7 @@ digraph {
             dstrukt -> web
 
             subgraph CSALL {
+
                 label = "CSALL"
                     // rank = same
                     node [fillcolor="#E33D31"]
@@ -170,46 +178,47 @@ digraph {
                         langsecurity [label = "Language-based\nsecurity"]
                     }
             }
+
             //edge[sametail=t3,samehead=h3]
             algoritmer -> advAlg
             matstat -> advAlg
-            edge[sametail=t3,samehead=h1]
+            //edge[sametail=t3,samehead=h1]
             linalg -> advAlg
-            edge[sametail=t1,samehead=h1]
+            //edge[sametail=t1,samehead=h1]
             mop -> prolang
             dstrukt -> prolang
             algoritmer -> ml
             prolang -> paraFunc
-            edge[sametail=t4,samehead=h1];
+            //edge[sametail=t4,samehead=h1];
             diskmat -> models
-            edge[sametail=t1,samehead=h1];
+            //edge[sametail=t1,samehead=h1];
             logik -> models
             //edge[sametail=t6,samehead=h6]
             diskmat -> crypto
             dstrukt -> crypto
             oop -> prolang
-            edge[sametail=t2,samehead=h1]
+            //edge[sametail=t2,samehead=h1]
             haskell -> types
-            edge[sametail=t1,samehead=h1]
+            //edge[sametail=t1,samehead=h1]
             logik -> types
             types -> models
             algoritmer -> discopt
-            edge[sametail=t2,samehead=h1];
+            //edge[sametail=t2,samehead=h1];
             linalg -> discopt
-            edge[sametail=t1,samehead=h1];
+            //edge[sametail=t1,samehead=h1];
 
-            edge[sametail=t2,samehead=h1];
+            //edge[sametail=t2,samehead=h1];
             concurrent -> softEng
-            edge[sametail=t1,samehead=h1];
+            //edge[sametail=t1,samehead=h1];
             dstrukt -> ml
             logik -> softEng
-            edge[sametail=t3,samehead=h1]
+            //edge[sametail=t3,samehead=h1]
             diskmat -> logik  [minlen = 3]
-            edge[sametail=t1,samehead=h1];
-            analys -> ml  [weight=10]
-            edge[sametail=t3,samehead=h1]
+            //edge[sametail=t1,samehead=h1];
+            analys -> ml
+            //edge[sametail=t3,samehead=h1]
             matstat -> ml
-            edge[sametail=t1,samehead=h1]
+            //edge[sametail=t1,samehead=h1]
             linalg -> ml
             haskell -> advFunc
             prolang -> advFunc
@@ -217,9 +226,9 @@ digraph {
             algoritmer -> ai
             dstrukt -> compilerConst
             prolang -> langsecurity
-            edge[sametail=t3,samehead=h1];
+            //edge[sametail=t3,samehead=h1];
             dstrukt -> langsecurity
-            edge[sametail=t1,samehead=h1];
+            //edge[sametail=t1,samehead=h1];
             prolang -> compilerConst
 
             subgraph CSN {
@@ -277,9 +286,9 @@ digraph {
                 flervar -> regler
                 dstrukt -> algoritmer
                 haskell -> algoritmer
-                edge[sametail=t2,samehead=h1];
+                //edge[sametail=t2,samehead=h1];
                 diskmat -> algoritmer
-                edge[sametail=t1,samehead=h1];
+                //edge[sametail=t1,samehead=h1];
                 matstat -> algoritmer
 
 //                lolnode [label="", image="sndlogo.svg"]

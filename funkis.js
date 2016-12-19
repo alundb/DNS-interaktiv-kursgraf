@@ -1,20 +1,52 @@
 
 
-//Parse the .dot file and add the generated html code (which includes the svg element).  
-graphviz_text =  d3.text("kursgraf.dot", function(text){
+//Parse the .dot file and add the generated html code (which includes the svg element).
+drawDot =  d3.text("kursgraf.dot", function(text){
+	var	svgText = Viz(text, "svg");
 
-	document.body.innerHTML += Viz(text, "svg");
+	//document.body.innerHTML += Viz(text, "svg");
+
+//Add the highlighting effect
+$(document).ready(function(){
+								$("#graph").graphviz({
+										svg: svgText,
+										ready: function() {
+												var gv = this
+												gv.nodes().click(function () {
+														var $set = $()
+														$set.push(this)
+														$set = $set.add(gv.linkedFrom(this, true))
+														$set = $set.add(gv.linkedTo(this, true))
+														gv.highlight($set, true)
+														gv.bringToFront($set)
+												})
+												$(document).keydown(function (evt) {
+														if (evt.keyCode == 27) {
+																gv.highlight()
+														}
+												})
+										}
+								});
+						});
 });
-
 
 
 //Add listeners to nodes----------------------------------------------------------
 setTimeout(function addListeners(){
+
+
+
+
+
+
+
+
+
   var x = d3.selectAll('.node');
   console.log(x);
-  x.on("mousedown", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
+  x.on("contextmenu", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
 
-var svgGraph = document.getElementsByTagName('svg')[0]; 
+var svgGraph = document.getElementsByTagName('svg')[0];
 var SelectedGraph = d3.select(svgGraph);
 
 
@@ -28,22 +60,22 @@ var defs = SelectedGraph.append("defs");
 // height=130% so that the shadow is not clipped
 var filter = defs.append("filter")
     .attr("id", "drop-shadow")
-    .attr("height", "130%");
+    .attr("height", "150%");
 
 // SourceAlpha refers to opacity of graphic that this filter will be applied to
 // convolve that with a Gaussian with standard deviation 3 and store result
 // in blur
 filter.append("feGaussianBlur")
     .attr("in", "SourceAlpha")
-    .attr("stdDeviation", 2)
+    .attr("stdDeviation", 4)
     .attr("result", "blur");
 
 // translate output of Gaussian blur to the right and downwards with 2px
 // store result in offsetBlur
 filter.append("feOffset")
     .attr("in", "blur")
-    .attr("dx", 2)
-    .attr("dy", 2)
+    .attr("dx", 1)
+    .attr("dy", 1)
     .attr("result", "offsetBlur");
 
 // overlay original SourceGraphic over translated blurred opacity by using
@@ -61,9 +93,12 @@ SelectedGraph.selectAll(".node").style("filter", "url(#drop-shadow)");
 
 
 //Remove title of graphobject. This avoids having "%3" showing up while hovering.
-d3.select("#graph0").select("title").remove(); 
+d3.select("#graph0").select("title").remove();
 
-}, 2000);
+
+
+
+}, 5000);
 
 
 
@@ -108,12 +143,20 @@ d3.select("#graph0").select("title").remove();
 
 
 
+
+
+
+
+
+
+
+
 var menu = [
 	{
 		title: 'Kursutveckling',
 		action: function(elm, d, i) {
-			var courseName = $(elm)[0].childNodes[0].textContent;
-			console.log('Item #1 clicked!');
+			var courseName =$(elm).attr('data-name');
+			//console.log($(elm).attr('data-name'));
 			console.log('The data for this circle is: ' + courseName);
 			window.open(dnslink + courseName + "/Kursutveckling");
 
@@ -122,7 +165,7 @@ var menu = [
 	{
 		title: 'Kursrelationer',
 		action: function(elm, d, i) {
-			var courseName = $(elm)[0].childNodes[0].textContent;
+			var courseName =$(elm).attr('data-name');
 			console.log('You have clicked the second item!');
 			console.log('The data for this circle is: ' + portMap[courseName]);
 			window.open(dnslink + courseName + "/Kursrelationer");
@@ -150,13 +193,3 @@ var portMap= {
 
 
 var dnslink ="https://dns.dtek.se/course_id="
-
-
-
-
-
-
-
-
-
-
