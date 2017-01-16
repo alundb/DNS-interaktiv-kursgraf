@@ -87,7 +87,7 @@
  			 }
  		 }
  	 },
- 	 zoom: true,
+  	 zoom: true,
  	 highlight: {
  		 selected: function (col, bg) {
  			 return col
