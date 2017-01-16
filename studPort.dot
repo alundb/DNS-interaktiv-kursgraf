@@ -65,14 +65,19 @@ digraph {
                 linalg   [label = "Linjär\nalgebra"]
                 digodat  [label = "Grundläggande\ndatorteknik"]
                 analys   [label = "Matematisk\nanalys"]
-                mop      [label = "Maskinorienterad\nprogrammering"]
+                mop      [label = "Programmering av\ninbyggda system"]
                 datakom  [label = "Data-\nkommunikation"]
                 oop      [label = "Objektorienterad\nprogrammering"]
         }
         //edge[sametail=t1,samehead=h1]
-            diskmat -> digodat
-            diskmat -> haskell
-            digodat -> mop
+            diskmat -> linalg
+            diskmat -> datakom
+            digodat -> datakom
+            oop     -> datakom //
+            diskmat -> analys
+
+
+
 
             subgraph TKDAT2 {
             //edge[samehead=h2, sametail=t2];
@@ -82,10 +87,10 @@ digraph {
                     // rank = same
                     node [fillcolor="#FFD942"]
                     matstat  [label = "Matematisk\nstatistik"]
-                    dtekproj [label = "Datatekniskt\nprojekt"]
                     fysik    [label = "Fysik för\ningenjörer"]
                     dstrukt  [label = "Datastrukturer"]
                     syntes   [label = "Digital konstruktion"]
+                    dtekproj [label = "Datatekniskt\nprojekt"]
                     el       [label = "Elektriska kretsar &\nfält"]
                     subgraph {
                         node [style="dashed, filled", penwidth=2]
@@ -94,23 +99,18 @@ digraph {
                     }
                     dst      [ label = "Datorsystem-\nteknik"]
             }
-            mop -> dtekproj
-            haskell -> dstrukt
-            oop -> dstrukt
-            oop -> concurrent
-            digodat -> syntes
-            mop -> dst
-            analys -> fysik
+
+            //edge[sametail=t2,samehead=h2];
+            mop     -> dtekproj
+            digodat -> dtekproj
+            diskmat -> matstat
             linalg -> matstat
             analys -> matstat
-            //edge[sametail=t2,samehead=h2];
-            diskmat -> matstat
-            analys -> el
-            haskell -> matdom
-            oop -> matdom
-            diskmat -> matdom
-            linalg -> matdom
-            analys -> matdom
+
+            diskmat -> dstrukt
+            oop -> dstrukt
+            linalg -> fysik
+            analys -> fysik
 
             subgraph TKDAT3 {
                 label = "TKDAT-3"
@@ -126,30 +126,14 @@ digraph {
                         elektronik [label="Elektronik"]
                         databas    [label="Databaser"]
                         flervar    [label = "Analys i\nflera variabler"]
-                        //digkonstr  [label = "Digital-\nkonstruktion, projektkurs"]
+                        digkonstr  [label = "Digital-\nkonstruktion, projektkurs"]
                         fysik2     [label = "Fysik 2"]
                         web        [label = "Web-applikationer"]
                         deskonstr  [label = "Design/konstruktion\nav grafiska gränssnitt"]
                     }
             }
             //edge[sametail=t2,samehead=h2]
-        analys -> elektronik
-            el -> elektronik
-            tss -> regler
-            analys -> tss
-            fysik -> regler
-            el -> regler
-            linalg -> flervar
-            linalg -> regler
-            oop -> databas
-            matdom -> tss
-            matdom -> advFunc
-            fysik -> fysik2
-            oop -> deskonstr
-            oop -> web
-            databas -> web
-            datakom -> web
-            dstrukt -> web
+
 
             subgraph CSALL {
 
@@ -179,58 +163,6 @@ digraph {
                     }
             }
 
-            //edge[sametail=t3,samehead=h3]
-            algoritmer -> advAlg
-            matstat -> advAlg
-            //edge[sametail=t3,samehead=h1]
-            linalg -> advAlg
-            //edge[sametail=t1,samehead=h1]
-            mop -> prolang
-            dstrukt -> prolang
-            algoritmer -> ml
-            prolang -> paraFunc
-            //edge[sametail=t4,samehead=h1];
-            diskmat -> models
-            //edge[sametail=t1,samehead=h1];
-            logik -> models
-            //edge[sametail=t6,samehead=h6]
-            diskmat -> crypto
-            dstrukt -> crypto
-            oop -> prolang
-            //edge[sametail=t2,samehead=h1]
-            haskell -> types
-            //edge[sametail=t1,samehead=h1]
-            logik -> types
-            types -> models
-            algoritmer -> discopt
-            //edge[sametail=t2,samehead=h1];
-            linalg -> discopt
-            //edge[sametail=t1,samehead=h1];
-
-            //edge[sametail=t2,samehead=h1];
-            concurrent -> softEng
-            //edge[sametail=t1,samehead=h1];
-            dstrukt -> ml
-            logik -> softEng
-            //edge[sametail=t3,samehead=h1]
-            diskmat -> logik  [minlen = 3]
-            //edge[sametail=t1,samehead=h1];
-            analys -> ml
-            //edge[sametail=t3,samehead=h1]
-            matstat -> ml
-            //edge[sametail=t1,samehead=h1]
-            linalg -> ml
-            haskell -> advFunc
-            prolang -> advFunc
-            logik -> advFunc
-            algoritmer -> ai
-            dstrukt -> compilerConst
-            prolang -> langsecurity
-            //edge[sametail=t3,samehead=h1];
-            dstrukt -> langsecurity
-            //edge[sametail=t1,samehead=h1];
-            prolang -> compilerConst
-
             subgraph CSN {
                 node [fillcolor="#68E331"]
                 computerNetworks [label="Computer networks"]
@@ -249,47 +181,12 @@ digraph {
                     parallelRTS [label="Parallel and distributed\nreal-time systems"]
                     distSys [label="Distributed systems"]
                     energyComp [label="Energy aware\ncomputing"]
-                    routerSwitch [label="Routing and\nswitching technology"]
+                    routerSwitch [label="Router- och\nswitchteknik"]
                     commEng [label="Introduction to\ncommunication engineering"]
                     compArch [label="Computer architecture"]
                 }
             }
-            dtekproj -> techwrite
-                dst -> compArch
-                tss -> commEng
-                datakom -> routerSwitch
-                dst -> energyComp
-                matstat -> ftcs
-                tss -> ftcs
-                concurrent -> ftcs
-                concurrent -> distSys
-                distSys -> advDistSys
-                datakom -> networkSecurity
-                datakom -> computerNetworks
-                concurrent -> computerNetworks
-                dstrukt -> oS
-                mop -> oS
-                concurrent -> oS
-                oS -> computerSecurity
-                oS -> rts
-                concurrent -> rts
-                rts -> parallelRTS
-                algoritmer -> parallelRTS
-                computerSecurity -> networkSecurity
-                concurrent -> parallelOrganization
-                dst -> parallelOrganization
 
-
-                //syntes -> digkonstr
-                linalg -> flervar
-                analys -> flervar
-                flervar -> regler
-                dstrukt -> algoritmer
-                haskell -> algoritmer
-                //edge[sametail=t2,samehead=h1];
-                diskmat -> algoritmer
-                //edge[sametail=t1,samehead=h1];
-                matstat -> algoritmer
 
 //                lolnode [label="", image="sndlogo.svg"]
 
