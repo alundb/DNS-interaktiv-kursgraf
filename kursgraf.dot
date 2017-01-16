@@ -172,7 +172,7 @@ digraph {
                         types    [label = "Types for programs\nand proofs "]
                         softEng  [label = "Software eng.\nusing formal meth."]
                         compilerConst [label="Compiler construction"]
-                        advFunc  [label = "Advanced\nfunc. prog"]
+                        advFunc  [label = "Advanced\nfunc. prog",fillcolor="#E33D31", style="dashed, filled"]
                         paraFunc [label = "Parallel functional\nprogramming"]
                         crypto   [label = "Cryptography"]
                         langsecurity [label = "Language-based\nsecurity"]
