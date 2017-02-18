@@ -1,7 +1,7 @@
 
 genGraph("kursgraf.dot");
-function genGraph(dotFile){
 
+function genGraph(dotFile){
 //Parse the .dot file and add the generated html code (which includes the svg element).
 drawDot =  d3.text(dotFile, function(text){
 	var	svgText = Viz(text, "svg");
@@ -9,7 +9,9 @@ drawDot =  d3.text(dotFile, function(text){
 	//document.body.innerHTML += Viz(text, "svg");
 
 //Add the highlighting effect
-$(document).ready(function(){
+//$(document).ready(function(){
+//addGraphis();
+//function addGraphis(){
 								$("#graph").graphviz({
 										svg: svgText,
 										ready: function() {
@@ -27,76 +29,107 @@ $(document).ready(function(){
 																gv.highlight()
 														}
 												})
+
+
+												var $nodisar = $()
+												//var elems = $(node17) //d3.selectAll(".node") Funkar bra
+												var elems = $(".node").filter(function(){
+																return $(this).attr('data-name') == "logik" }); //d3.selectAll(".node")
+
+												function isTagInNode(){}
+																			//.filter(function(d) {return d} )
+												$nodisar.push(elems)
+												//$nodisar = $nodisar.add(gv.linkedFrom(elems, true))
+												//$nodisar = $nodisar.add(gv.linkedTo(elems, true))
+												gv.highlight($nodisar, true)
+												//var nodisar = d3.selectAll(".node")
+												//nodisar = nodisar.add(gv.linkedFrom(this,true))
+												//gv.highlight($nodis, true)
+
 										}
+
+
+
+
+
 								});
-						});
+//						};
 });
+}
+
+//function hideItem(){
+//	$("#graph").graphviz({
+//			svg: svgText,
+//			ready: function() {
+//					var gv = this
+//				}
+//			})
+//	};
+
+	//var theNode = d3.selectAll(".node")
+	//								.filter(function(d) { return d.className == itemName });
+	//d3.selectAll(".node").style("opacity","0");
+	//theNode.style("opacity","1");
+
 
 
 //Add listeners to nodes----------------------------------------------------------
-setTimeout(function addListeners(){
+
+//setTimeout(function addListeners(){
+// $(document).ready(function(){
+//   var x = d3.selectAll('.node');
+//   console.log(x);
+//   x.on("contextmenu", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
+//
+// var svgGraph = document.getElementsByTagName('svg')[0];
+// var SelectedGraph = d3.select(svgGraph);
+//
+// //Add shadows to nodes------------------------------------------------------------
+// // // filters go in defs element
+// // var defs = SelectedGraph.append("defs");
+// //
+// // // create filter with id #drop-shadow
+// // // height=130% so that the shadow is not clipped
+// // var filter = defs.append("filter")
+// //     .attr("id", "drop-shadow")
+// //     .attr("height", "150%");
+// //
+// // // SourceAlpha refers to opacity of graphic that this filter will be applied to
+// // // convolve that with a Gaussian with standard deviation 3 and store result
+// // // in blur
+// // filter.append("feGaussianBlur")
+// //     .attr("in", "SourceAlpha")
+// //     .attr("stdDeviation", 4)
+// //     .attr("result", "blur");
+// //
+// // // translate output of Gaussian blur to the right and downwards with 2px
+// // // store result in offsetBlur
+// // filter.append("feOffset")
+// //     .attr("in", "blur")
+// //     .attr("dx", 1)
+// //     .attr("dy", 1)
+// //     .attr("result", "offsetBlur");
+// //
+// // // overlay original SourceGraphic over translated blurred opacity by using
+// // // feMerge filter. Order of specifying inputs is important!
+// // var feMerge = filter.append("feMerge");
+// //
+// // feMerge.append("feMergeNode")
+// //     .attr("in", "offsetBlur")
+// // feMerge.append("feMergeNode")
+// //     .attr("in", "SourceGraphic");
+// //
+// //
+// // // for each rendered node, apply #drop-shadow filter
+// // SelectedGraph.selectAll(".node").style("filter", "url(#drop-shadow)");
+//
+// //Remove title of graphobject. This avoids having "%3" showing up while hovering.
+// d3.select("#graph0").select("title").remove();
+// });
+
+//}, 5000);
 
 
-
-
-  var x = d3.selectAll('.node');
-  console.log(x);
-  x.on("contextmenu", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
-
-var svgGraph = document.getElementsByTagName('svg')[0];
-var SelectedGraph = d3.select(svgGraph);
-
-
-
-//Add shadows to nodes------------------------------------------------------------
-
-// filters go in defs element
-var defs = SelectedGraph.append("defs");
-
-// create filter with id #drop-shadow
-// height=130% so that the shadow is not clipped
-var filter = defs.append("filter")
-    .attr("id", "drop-shadow")
-    .attr("height", "150%");
-
-// SourceAlpha refers to opacity of graphic that this filter will be applied to
-// convolve that with a Gaussian with standard deviation 3 and store result
-// in blur
-filter.append("feGaussianBlur")
-    .attr("in", "SourceAlpha")
-    .attr("stdDeviation", 4)
-    .attr("result", "blur");
-
-// translate output of Gaussian blur to the right and downwards with 2px
-// store result in offsetBlur
-filter.append("feOffset")
-    .attr("in", "blur")
-    .attr("dx", 1)
-    .attr("dy", 1)
-    .attr("result", "offsetBlur");
-
-// overlay original SourceGraphic over translated blurred opacity by using
-// feMerge filter. Order of specifying inputs is important!
-var feMerge = filter.append("feMerge");
-
-feMerge.append("feMergeNode")
-    .attr("in", "offsetBlur")
-feMerge.append("feMergeNode")
-    .attr("in", "SourceGraphic");
-
-
-// for each rendered node, apply #drop-shadow filter
-SelectedGraph.selectAll(".node").style("filter", "url(#drop-shadow)");
-
-
-//Remove title of graphobject. This avoids having "%3" showing up while hovering.
-d3.select("#graph0").select("title").remove();
-
-}, 5000);
-
-
-
-}
 
 
 
@@ -107,8 +140,6 @@ d3.select("#graph0").select("title").remove();
 //  		//d3.contextMenu(menu);
 //  	//}
 // });
-
-
 
 // $("g").click(function(evt) {
 // 	var e = evt.target;
