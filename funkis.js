@@ -12,7 +12,10 @@ drawDot =  d3.text(dotFile, function(text){
 //$(document).ready(function(){
 //addGraphis();
 //function addGraphis(){
+
 								$("#graph").graphviz({
+
+
 										svg: svgText,
 										ready: function() {
 												var gv = this
@@ -30,54 +33,319 @@ drawDot =  d3.text(dotFile, function(text){
 														}
 												})
 
-
-												showCoursesFromTag("Laplace")
-												
-												function showCoursesFromTag(tag){
-													var $nodisar = $()
+												$(window).load(function(){
+													var button = document.getElementById("searchButt")
+													button.onclick = function() {
+													var tag =  document.getElementById("targetNode").value;
 													var taggedCourses = tagMap[tag]
-													for (i = 0; i < taggedCourses.length; i++){
-														$nodisar.push($(".node").filter(function(){ return $(this).attr('data-name') == taggedCourses[i] }));
-													}
-													gv.highlight($nodisar, true)
-												}
-
-
-																	 //console.log(i)
+													if (taggedCourses !== undefined){
+														var $nodisar = $()
+														for (i = 0; i < taggedCourses.length; i++){
+															$nodisar.push($(".node").filter(function(){ return $(this).attr('data-name') == taggedCourses[i] }));
+														}
+														gv.highlight($nodisar, true)
+												 }
+												 else{
+													 var $emptySet = $(searchButt) //Fulhack
+													 gv.highlight($emptySet, true)
+												 }
+												};
+											});
+										//console.log(i)
 																	// tempElems.push($(this).attr('data-name') == taggedCourses[i])
 																//return tempElems});
 																	//return $(this).attr('data-name') == taggedCourses[i] }); //d3.selectAll(".node")
 												//console.log(elems)
 												//function checkName(elems)
-
 												//function findNodesByTag(tag){
 												//	var taggedCourses = tagMap[tag]
 													//console.log(taggedCourses)
 											//		return taggedCourses;
 													//var corrLabels    = labelCodeMap
-										//		}
-
+										//
 												//$nodisar.push(elems)
 												//$nodisar = $nodisar.add(gv.linkedFrom(elems, true))
 												//$nodisar = $nodisar.add(gv.linkedTo(elems, true))
-
 												//var nodisar = d3.selectAll(".node")
 												//nodisar = nodisar.add(gv.linkedFrom(this,true))
 												//gv.highlight($nodis, true)
-
 										}
 
-
-
-
-
 								});
-//						};
 });
 }
 
 var tagMap = {
-	"Laplace" : ["logik", "tss"] //["DAT060", "DAT037"]
+	"värden" : ["haskell"],
+	"typer" : ["haskell"],
+	"funktioner" : ["haskell", "diskmat", "analys"],
+	"datastrukturer" : ["haskell", "dstrukt"],
+	"listor" : ["haskell", "dstrukt"],
+	"tupler" : ["haskell"],
+	"användardefinierade typer" : ["haskell"],
+	"top-down programdesign" : ["haskell"],
+	"rekursion" : ["haskell", "diskmat"],
+	"rekursiva typer" : ["haskell"],
+	"tidskomplexitet" : ["haskell"],
+	"input-output" : ["haskell"],
+	"moduler" : ["haskell"],
+	"abstraktion" : ["haskell"],
+	"verifiering" : ["haskell", "mop"],
+	"högre ordningens funktioner" : ["haskell"],
+	"data-centrisk programmering" : ["haskell"],
+	"logik" : ["diskmat"],
+	"mängdlära" : ["diskmat"],
+	"relationer" : ["diskmat"],
+	"bevis" : ["diskmat", "matdom"],
+	"motsägelsebevis" : ["diskmat"],
+	"heltalsaritmetik" : ["diskmat"],
+	"kombinatorik" : ["diskmat", "dstrukt"],
+	"grafteori" : ["diskmat", "dstrukt"],
+	"boolesk algebra" : ["diskmat", "digodat"],
+	"kombinatoriska nät" : ["digodat", "syntes"],
+	"sekvensnät" : ["digodat", "syntes"],
+	"alu" : ["digodat", "syntes"],
+	"dataväg" : ["digodat", "syntes", "dst"],
+	"styrenhet" : ["digodat", "syntes"],
+	"minne" : ["digodat", "syntes", "dst"],
+	"in- och ut- enheter" : ["digodat", "syntes", "dst"],
+	"instruktionsuppsättning" : ["digodat", "syntes"],
+	"maskinspråk" : ["digodat"],
+	"assembler" : ["digodat", "mop", "dst"],
+	"digitalteknik" : ["digodat", "syntes", "dst"],
+	"matriser" : ["linalg"],
+	"vektorer" : ["linalg"],
+	"linjära avbildningar" : ["linalg"],
+	"ekvationssystem" : ["linalg"],
+	"egenvektorer" : ["linalg"],
+	"egenvärden" : ["linalg", "matdom"],
+	"baser" : ["linalg"],
+	"dimensioner" : ["linalg"],
+	"relationsmatriser" : ["linalg"],
+	"matlab" : ["linalg"],
+	"objektorienterad" : ["oop"],
+	"objekt" : ["oop"],
+	"klass" : ["oop"],
+	"datainkapsling" : ["oop"],
+	"konstruktorer" : ["oop"],
+	"metoder" : ["oop"],
+	"instansvariabler" : ["oop"],
+	"klassvariabler" : ["oop"],
+	"standardbibliotek" : ["oop"],
+	"kodningsstandard" : ["oop"],
+	"namnsättning" : ["oop"],
+	"kommentering" : ["oop"],
+	"derivata" : ["analys"],
+	"intergral" : ["analys"],
+	"linjärisering" : ["analys"],
+	"optimalitetskriterier" : ["analys"],
+	"polynom" : ["analys"],
+	"potensserier" : ["analys", "matdom"],
+	"envariabelanalys" : ["analys"],
+	"kretskoppling" : ["datakom"],
+	"paketkoppling" : ["datakom"],
+	"datornätverk" : ["datakom"],
+	"distribuerad" : ["datakom"],
+	"applikationsprotokoll" : ["datakom"],
+	"www" : ["datakom"],
+	"dns" : ["datakom"],
+	"sockets" : ["datakom"],
+	"datagram" : ["datakom"],
+	"dataöverföring" : ["datakom"],
+	"tcp" : ["datakom"],
+	"udp" : ["datakom"],
+	"stockningskontroll" : ["datakom"],
+	"internet" : ["datakom"],
+	"protokoll" : ["datakom", "dtekproj"],
+	"adressering" : ["datakom"],
+	"ipv4" : ["datakom"],
+	"ipv6" : ["datakom"],
+	"arp" : ["datakom"],
+	"icmp" : ["datakom"],
+	"dv" : ["datakom"],
+	"ls" : ["datakom"],
+	"autonoma system" : ["datakom"],
+	"rip" : ["datakom"],
+	"ospf" : ["datakom"],
+	"bgp" : ["datakom"],
+	"lan" : ["datakom"],
+	"mac" : ["datakom"],
+	"ethernet" : ["datakom"],
+	"switching" : ["datakom"],
+	"vlan" : ["datakom"],
+	"trådlös" : ["datakom"],
+	"brandvägg" : ["datakom"],
+	"paket" : ["datakom"],
+	"wlan" : ["datakom"],
+	"c" : ["mop"],
+	"test" : ["mop"],
+	"systemprogrammering" : ["mop"],
+	"händelser" : ["mop"],
+	"avbrott" : ["mop"],
+	"räknarkretsar" : ["mop"],
+	"seriekommunikation" : ["mop"],
+	"tidsdelningssystem" : ["mop"],
+	"periferikretsar" : ["mop"],
+	"mikrodatorsystem" : ["dtekproj"],
+	"mikroprocessor" : ["dtekproj"],
+	"periferienheter" : ["dtekproj"],
+	"projektarbete" : ["dtekproj"],
+	"versionshantering" : ["dtekproj"],
+	"rapport" : ["dtekproj"],
+	"dokumentation" : ["dtekproj"],
+	"sannolikhetslära" : ["matstat"],
+	"markovkedjor" : ["matstat"],
+	"stokastisk" : ["matstat"],
+	"väntevärde" : ["matstat"],
+	"varians" : ["matstat"],
+	"korrelation" : ["matstat"],
+	"stora talens lag" : ["matstat"],
+	"centrala gränsvärdessatsen" : ["matstat"],
+	"statistik" : ["matstat"],
+	"skattningar" : ["matstat"],
+	"konfidensintervall" : ["matstat"],
+	"kombinationer" : ["matstat", "diskmat"],
+	"permutationer" : ["matstat", "diskmat"],
+	"modeller" : ["matstat"],
+	"abstrakta datatyper" : ["dstrukt"],
+	"komplexitetsanalys" : ["dstrukt"],
+	"träd" : ["dstrukt"],
+	"fält" : ["dstrukt"],
+	"hashtabeller" : ["dstrukt"],
+	"köer" : ["dstrukt"],
+	"prioritetsköer" : ["dstrukt"],
+	"lexika" : ["dstrukt"],
+	"grafer" : ["dstrukt"],
+	"iteratorer" : ["dstrukt"],
+	"sortering" : ["dstrukt"],
+	"mekanik" : ["fysik"],
+	"newton" : ["fysik"],
+	"rörelser" : ["fysik"],
+	"komponenterna" : ["fysik"],
+	"partiklar" : ["fysik"],
+	"värmelära" : ["fysik"],
+	"termodynamik" : ["fysik", "fysik2"],
+	"processer" : ["fysik", "fysik2"],
+	"vågfysik" : ["fysik"],
+	"vågor" : ["fysik"],
+	"interferens" : ["fysik", "concurrent"],
+	"diffraktion" : ["fysik"],
+	"arbete" : ["fysik"],
+	"energi" : ["fysik"],
+	"rotationsrörelse" : ["fysik"],
+	"rörelsemängd" : ["fysik"],
+	"rörelsemängdsmoment" : ["fysik"],
+	"oscillationer" : ["fysik"],
+	"superposition" : ["fysik"],
+	"differentialekvationer" : ["fysik"],
+	"transienta förlopp" : ["fysik", "el"],
+	"asic" : ["syntes"],
+	"fpga" : ["syntes"],
+	"vhdl" : ["syntes"],
+	"digitala kretsar" : ["syntes"],
+	"hårdvarukonstruktion" : ["syntes"],
+	"processor" : ["syntes", "dst"],
+	"tillståndsmaskin" : ["syntes"],
+	"dsl" : ["matdom"],
+	"domän" : ["matdom"],
+	"funktionell programmering" : ["matdom"],
+	"programkalkyl" : ["matdom"],
+	"domänspecifik" : ["matdom"],
+	"kategoriteori" : ["matdom"],
+	"medelvärdessatser" : ["matdom"],
+	"taylors formel" : ["matdom"],
+	"haskell" : ["matdom", "haskell"],
+	"laplace" : ["matdom", "tss"],
+	"transformer" : ["matdom", "tss"],
+	"parallellism" : ["concurrent"],
+	"synkronisering" : ["concurrent"],
+	"kritiska regioner" : ["concurrent"],
+	"ömsesidig uteslutning" : ["concurrent"],
+	"deadlock" : ["concurrent"],
+	"livelock" : ["concurrent"],
+	"busy waiting" : ["concurrent"],
+	"semaforer" : ["concurrent"],
+	"monitorer" : ["concurrent"],
+	"rendezvous" : ["concurrent"],
+	"erlang" : ["concurrent"],
+	"linda" : ["concurrent"],
+	"resource allocation" : ["concurrent"],
+	"dining philosophers" : ["concurrent"],
+	"pipelining" : ["dst"],
+	"minneshierarki" : ["dst"],
+	"cacheminnen" : ["dst"],
+	"huvudminne" : ["dst"],
+	"virtuellt minne" : ["dst"],
+	"fler-kärniga" : ["dst"],
+	"kretselement" : ["el"],
+	"ohm" : ["el"],
+	"kirchhoff" : ["el"],
+	"effekt" : ["el"],
+	"elektriska nät" : ["el"],
+	"växelström" : ["el"],
+	"frekvensegenskaper" : ["el"],
+	"bodediagram" : ["el"],
+	"operationsförstärkare" : ["el"],
+	"elektromagnetism" : ["el"],
+	"likström" : ["el"],
+	"ström" : ["el"],
+	"spänning" : ["el"],
+	"absolut summer" : ["tss"],
+	"energisignaler" : ["tss"],
+	"bandbegränsade signaler" : ["tss"],
+	"linjäritet" : ["tss"],
+	"skift-invarians" : ["tss"],
+	"kausalitet" : ["tss"],
+	"bibo" : ["tss"],
+	"fourierserier" : ["tss"],
+	"fourier" : ["tss"],
+	"z-transform" : ["tss"],
+	"fouriertransform" : ["tss"],
+	"lti" : ["tss"],
+	"lti-ekvationen" : ["tss"],
+	"nyquist-frekvensen" : ["tss"],
+	"samplingsteoremet" : ["tss"],
+	"dft" : ["tss"],
+	"sampling" : ["tss"],
+	"lti-system" : ["tss"],
+	"signalmodeller" : ["tss"],
+	"parseval" : ["tss"],
+	"impulssvar" : ["tss"],
+	"stegsvar" : ["tss"],
+	"överföringsfunktion" : ["tss"],
+	"frekvenssvar" : ["tss"],
+	"maxwell-boltzmanns fördelningsfunktion" : ["fysik2"],
+	"fasta tillstånd" : ["fysik2"],
+	"kristallstruktur" : ["fysik2"],
+	"röntgen" : ["fysik2"],
+	"elektrondiffraktion" : ["fysik2"],
+	"fermi-diracs fördelningsfunktion" : ["fysik2"],
+	"tillståndstätheter" : ["fysik2"],
+	"frielektronmodellen" : ["fysik2"],
+	"elektronstruktur" : ["fysik2"],
+	"fotoelektronspektra" : ["fysik2"],
+	"brillouinzoner" : ["fysik2"],
+	"konduktivitet" : ["fysik2"],
+	"isolatorer" : ["fysik2"],
+	"halvledare" : ["fysik2"],
+	"roman" : ["skon"],
+	"novell" : ["skon"],
+	"pjäs" : ["skon"],
+	"poesi" : ["skon"],
+	"texter" : ["skon"],
+	"kreativt skrivande" : ["skon"],
+	"litteraturteori" : ["skon"],
+	"narratologi" : ["skon"],
+	"läsarstrategier" : ["skon"],
+	"skönlitteratur" : ["skon"],
+	"tolkning" : ["skon"],
+	"människa-teknologi-samhälle" : ["skon"],
+	"mts" : ["skon"],
+
+
+
+
+
 }
 
 //function labelToCode (label){
