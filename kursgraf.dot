@@ -40,7 +40,7 @@ digraph {
             DM2 [fillcolor = "#68E331", label="Master CSN", penwidth=0, pos="1,2!", pin=true]
             DM1 [fillcolor = "#E33D31", label="Master CSALL", penwidth=0]
             D3 [fillcolor = "#BC4BEC", label="Årskurs 3", penwidth=0]
-            D2 [fillcolor = "#20B2AA", label="Årskurs 2", penwidth=0]
+            D2 [fillcolor = "#FFD942", label="Årskurs 2", penwidth=0]
             D1 [fillcolor = "#ACC5F6", label="Årskurs 1", penwidth=0]
 
             Valbar [style="dashed", penwidth=2]
