@@ -31,17 +31,36 @@ drawDot =  d3.text(dotFile, function(text){
 												})
 
 
-												var $nodisar = $()
-												//var elems = $(node17) //d3.selectAll(".node") Funkar bra
-												var elems = $(".node").filter(function(){
-																return $(this).attr('data-name') == "logik" }); //d3.selectAll(".node")
+												showCoursesFromTag("Laplace")
+												
+												function showCoursesFromTag(tag){
+													var $nodisar = $()
+													var taggedCourses = tagMap[tag]
+													for (i = 0; i < taggedCourses.length; i++){
+														$nodisar.push($(".node").filter(function(){ return $(this).attr('data-name') == taggedCourses[i] }));
+													}
+													gv.highlight($nodisar, true)
+												}
 
-												function isTagInNode(){}
-																			//.filter(function(d) {return d} )
-												$nodisar.push(elems)
+
+																	 //console.log(i)
+																	// tempElems.push($(this).attr('data-name') == taggedCourses[i])
+																//return tempElems});
+																	//return $(this).attr('data-name') == taggedCourses[i] }); //d3.selectAll(".node")
+												//console.log(elems)
+												//function checkName(elems)
+
+												//function findNodesByTag(tag){
+												//	var taggedCourses = tagMap[tag]
+													//console.log(taggedCourses)
+											//		return taggedCourses;
+													//var corrLabels    = labelCodeMap
+										//		}
+
+												//$nodisar.push(elems)
 												//$nodisar = $nodisar.add(gv.linkedFrom(elems, true))
 												//$nodisar = $nodisar.add(gv.linkedTo(elems, true))
-												gv.highlight($nodisar, true)
+
 												//var nodisar = d3.selectAll(".node")
 												//nodisar = nodisar.add(gv.linkedFrom(this,true))
 												//gv.highlight($nodis, true)
@@ -55,6 +74,16 @@ drawDot =  d3.text(dotFile, function(text){
 								});
 //						};
 });
+}
+
+var tagMap = {
+	"Laplace" : ["logik", "tss"] //["DAT060", "DAT037"]
+}
+
+//function labelToCode (label){
+//}
+var labelCodeMap = {
+"logik" : "DAT060"
 }
 
 //function hideItem(){
@@ -74,7 +103,6 @@ drawDot =  d3.text(dotFile, function(text){
 
 
 //Add listeners to nodes----------------------------------------------------------
-
 //setTimeout(function addListeners(){
 // $(document).ready(function(){
 //   var x = d3.selectAll('.node');
@@ -126,13 +154,7 @@ drawDot =  d3.text(dotFile, function(text){
 // //Remove title of graphobject. This avoids having "%3" showing up while hovering.
 // d3.select("#graph0").select("title").remove();
 // });
-
 //}, 5000);
-
-
-
-
-
 // $("g").click(function(evt) {
 //   //if ($(this).attr("id")  != "graph0") {
 //  			alert("hello");
@@ -140,7 +162,6 @@ drawDot =  d3.text(dotFile, function(text){
 //  		//d3.contextMenu(menu);
 //  	//}
 // });
-
 // $("g").click(function(evt) {
 // 	var e = evt.target;
 //
@@ -166,13 +187,6 @@ drawDot =  d3.text(dotFile, function(text){
 // console.log($(this)[0].childNodes[0].textContent);
 // //console.log($(this)[0].childNodes[3].textContent);
 // //console.log((document.getElementById("node18")).childNodes[3]);
-
-
-
-
-
-
-
 
 
 
@@ -209,9 +223,11 @@ var menu = [
 ]
 
 
-var portlink ="https://student.portal.chalmers.se/sv/chalmersstudier/programinformation/Sidor/SokProgramutbudet.aspx?course_id="
-var engLink  ="https://student.portal.chalmers.se/en/chalmersstudies/programme-information/Pages/SearchProgram.aspx?course_id="
-var portMap= {
+
+
+var portlink = "https://student.portal.chalmers.se/sv/chalmersstudier/programinformation/Sidor/SokProgramutbudet.aspx?course_id="
+var engLink  = "https://student.portal.chalmers.se/en/chalmersstudies/programme-information/Pages/SearchProgram.aspx?course_id="
+var portMap = {
 		'haskell': portlink + "24698&parsergrp=2",
 		'diskmat': portlink + "24696&parsergrp=2",
 		'digodat': portlink + "24923&parsergrp=2",
