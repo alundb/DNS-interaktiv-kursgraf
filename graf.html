@@ -1,24 +1,37 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"> </script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"> </script> -->
 <!-- <link rel="stylesheet" href="stil.css"> -->
 <link rel="stylesheet" href="css/graphviz.svg.css">
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="viz.js" charset="utf-8"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css"> -->
 <link rel="stylesheet" href="css/graphviz.svg.css">
 <link rel="stylesheet" href="d3-context-menu.css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="d3-context-menu.js"></script>
-<script src="../dist/jquery.svg.js"></script>
 <script src="../lib/jquery.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<!-- <script src="../dist/jquery.svg.es5.min.js"></script> -->
+<!-- <script src="../dist/jquery.svg.js"></script> -->
+<!-- <script type="text/javascript" src="https://cdn.rawgit.com/jquery/jquery-color/master/jquery.color.js"></script> -->
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
+<!-- <script type="text/javascript" src="https://cdn.rawgit.com/jquery/jquery-color/master/jquery.color.js"></script> -->
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="js/tagList.js"></script>
 
 <html>
 <body>
-  <script src="../dist/jquery.svg.es5.min.js"></script>
-  <script src="../dist/jquery.svg.js"></script>
-  <script type="text/javascript" src="https://cdn.rawgit.com/jquery/jquery-color/master/jquery.color.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <div class="ui-widget">
+  <!-- <label for="tags">Tags: </label> -->
+  <input id="tags" onkeydown = "if (event.keyCode == 13)
+                        document.getElementById('searchButt').click()">
+  <button id="searchButt" >Sök efter tag</button>
+</div>
 
-  <style>
+  <!-- /*<style>
+
       #instructions {
           color: #fcfcfc;
           position: absolute;
@@ -27,7 +40,6 @@
           left: 0px;
       }
   </style>
-
   <defs>
     <filter id="f2" x="0" y="0" width="200%" height="200%">
       <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
@@ -36,18 +48,11 @@
     </filter>
   </defs>
   <rect width="90" height="90" stroke="green" stroke-width="3"
-  fill="yellow" filter="url(#f2)" />
-
-
+  fill="yellow" filter="url(#f2)" />*/ -->
     <!-- <h1>DNS</h1> -->
     <!-- <input type="radio" name="browser" onclick="check(this.value)" value=" Internet Explorer">Internet Explorer<br> -->
     <div id="graph" style="width: 100%; height: 97%; overflow: scroll;"></div>
-    <script type="text/javascript">
-
-    </script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script type="text/javascript" src="https://cdn.rawgit.com/jquery/jquery-color/master/jquery.color.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript"> </script> -->
     <script type="text/javascript" src="js/jquery.graphviz.svg.js"></script>
     <script src="funkis.js"></script>
     <script type="text/javascript">
@@ -56,18 +61,12 @@
       x.on("contextmenu", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
     var svgGraph = document.getElementsByTagName('svg')[0];
     var SelectedGraph = d3.select(svgGraph);
+
     //Remove title of graphobject. This avoids having "%3" showing up while hovering.
     d3.select("#graph0").select("title").remove();
-
-    //.on("click", changewiggle);
-
-    //hideItem();
     });
     </script>
-    <script type="text/javascript">
+    <!-- <input id="targetNode" name="targetNode" type="text" /> -->
 
-    </script>
-    <input id="targetNode" name="targetNode" type="text" />
-    <button id="searchButt">Sök efter tag</button>
 </body>
 </html>
