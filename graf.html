@@ -1,79 +1,35 @@
-<!doctype html>
-    <!-- <link rel="stylesheet" href="stil.css"> -->
-    <link rel="stylesheet" href="css/graphviz.svg.css">
+<!--<!doctype html> Ställer till problem i chrome -->
+<html>
+    <head>
+        <title>Kursgraf</title>
+        <link rel="stylesheet" href="css/graphviz.svg.css">
+        <link rel="stylesheet" href="stylo.css">
+        <link rel="stylesheet" href="d3-context-menu.css" /> 
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">   
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
 
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="d3-context-menu.css" />
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <div class="ui-widget">
-  <!-- <label for="tags">Tags: </label> -->
-  <input id="tags" onkeydown = "if (event.keyCode == 13)
-                        document.getElementById('searchButt').click()">
-  <button id="searchButt" >Sök efter tag</button>
-</div>
-    <div id="graph" style="width: 100%; height: 97%; overflow: scroll;"></div>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script src="viz.js" charset="utf-8"></script>
+        <script src="d3-context-menu.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/tagList.js"></script>
+        <script type="text/javascript" src="js/jquery.graphviz.svg.js"></script>
+        <script src="funkis.js"></script>
+        
+    </head>
+    <body>
+        <div class="ui-widget">
+        <input id="tags" onkeydown = "if (event.keyCode == 13) document.getElementById('searchButt').click()">
+        <button id="searchButt" >Sök efter tag</button>
+            
+        <input type="radio" id="radio1" name="radios" onClick="genNewGraph('kursgraf.dot');" value="all"  checked>
+            <label for="radio1">Kursspecifika förkunskapskrav</label>
+        <input type="radio" id="radio2" name="radios" onClick="genNewGraph('test.dot');" value="false">
+            <label for="radio2">Konceptuell kursrelation</label>
+        </div>
+<!--        <div id="graph" style="width: 100%; height: 97%; overflow: scroll;"></div>-->
 
-  <!-- /*<style>
-
-      #instructions {
-          color: #fcfcfc;
-          position: absolute;
-          z-index: 100;
-          bottom: 0px;
-          left: 0px;
-      }
-  </style>
-  <defs>
-    <filter id="f2" x="0" y="0" width="200%" height="200%">
-      <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
-      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
-      <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
-    </filter>
-  </defs>
-  <rect width="90" height="90" stroke="green" stroke-width="3"
-  fill="yellow" filter="url(#f2)" />*/ -->
-    <!-- <h1>DNS</h1> -->
-    <!-- <input type="radio" name="browser" onclick="check(this.value)" value=" Internet Explorer">Internet Explorer<br> -->
-
-
-    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"> </script> -->
-    <!-- <script type="text/javascript"> </script> -->
-    <!--<script src="lib/jquery.min.js"></script>-->
-    <script src="https://d3js.org/d3.v3.min.js"></script>
-    <script src="viz.js" charset="utf-8"></script>
-    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
-    <script src="js/jquery.graphviz.svg.js"></script>
-    <script id="d3con" src="d3-context-menu.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-    <!-- <script src="../dist/jquery.svg.es5.min.js"></script> -->
-    <!-- <script src="../dist/jquery.svg.js"></script> -->
-    <!-- <script type="text/javascript" src="https://cdn.rawgit.com/jquery/jquery-color/master/jquery.color.js"></script> -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
-    <!-- <script type="text/javascript" src="https://cdn.rawgit.com/jquery/jquery-color/master/jquery.color.js"></script> -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
-    <script type="text/javascript" src="js/tagList.js"></script>
-
-    <script src="funkis.js"></script>
-    <script type="text/javascript">
-    
-    
-    
-    //$(window).load(function() {
-    //setTimeout((function(){
-    
-    
-    //console.log("Nu laddas det");
-    //var x = d3.selectAll('.node');
-    //x.on("contextmenu", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
-    //var svgGraph = document.getElementsByTagName('svg')[0];
-    //var SelectedGraph = d3.select(svgGraph);
-
-    //Remove title of graphobject. This avoids having "%3" showing up while hovering.
-    //d3.select("#graph0").select("title").remove();
-    //})
-    //, 5000);
-    </script>
-    <!-- <input id="targetNode" name="targetNode" type="text" /> -->
-
+    </body>
+</html>
