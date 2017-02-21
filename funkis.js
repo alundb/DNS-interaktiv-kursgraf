@@ -1,11 +1,6 @@
 
 genGraph("kursgraf.dot");
 
-function genGraph(dotFile){
-//Parse the .dot file and add the generated html code (which includes the svg element).
-drawDot =  d3.text(dotFile, function(text){
-	var	svgText = Viz(text, "svg");
-
 	//document.body.innerHTML += Viz(text, "svg");
 
 //Add the highlighting effect
@@ -13,66 +8,83 @@ drawDot =  d3.text(dotFile, function(text){
 //addGraphis();
 //function addGraphis(){
 
-								$("#graph").graphviz({
+function genGraph(dotFile) {
+//Parse the .dot file and add the generated html code (which includes the svg element).
+    drawDot =  d3.text(dotFile, function(text){
+	    var	svgText = Viz(text, "svg");
 
 
-										svg: svgText,
-										ready: function() {
-												var gv = this
-												gv.nodes().click(function () {
-														var $set = $()
-														$set.push(this)
-														$set = $set.add(gv.linkedFrom(this, true))
-														$set = $set.add(gv.linkedTo(this, true))
-														gv.highlight($set, true)
-														gv.bringToFront($set)
-												})
-												$(document).keydown(function (evt) {
-														if (evt.keyCode == 27) {
-																gv.highlight()
-														}
-												})
+        $("#graph").graphviz({
+	        svg: svgText,
+	        ready: function() {
+                // BEGIN
+                var x = d3.selectAll('.node');
+                x.on("contextmenu", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
+                var svgGraph = document.getElementsByTagName('svg')[0];
+                var SelectedGraph = d3.select(svgGraph);
 
-												$(window).load(function(){
-													var button = document.getElementById("searchButt")
-													button.onclick = function() {
-													var tag =  document.getElementById("tags").value;
-													var taggedCourses = tagMap[tag]
-													if (taggedCourses !== undefined){
-														var $nodisar = $()
-														for (i = 0; i < taggedCourses.length; i++){
-															$nodisar.push($(".node").filter(function(){ return $(this).attr('data-name') == taggedCourses[i] }));
-														}
-														gv.highlight($nodisar, true)
-												 }
-												 else{
-													 var $emptySet = $(searchButt) //Fulhack
-													 gv.highlight($emptySet, true)
-												 }
-												};
-											});
-										//console.log(i)
-																	// tempElems.push($(this).attr('data-name') == taggedCourses[i])
-																//return tempElems});
-																	//return $(this).attr('data-name') == taggedCourses[i] }); //d3.selectAll(".node")
-												//console.log(elems)
-												//function checkName(elems)
-												//function findNodesByTag(tag){
-												//	var taggedCourses = tagMap[tag]
-													//console.log(taggedCourses)
-											//		return taggedCourses;
-													//var corrLabels    = labelCodeMap
-										//
-												//$nodisar.push(elems)
-												//$nodisar = $nodisar.add(gv.linkedFrom(elems, true))
-												//$nodisar = $nodisar.add(gv.linkedTo(elems, true))
-												//var nodisar = d3.selectAll(".node")
-												//nodisar = nodisar.add(gv.linkedFrom(this,true))
-												//gv.highlight($nodis, true)
-										}
+                //Remove title of graphobject. This avoids having "%3" showing up while hovering.
+                d3.select("#graph0").select("title").remove();
 
-								});
-});
+                // END
+
+		        var gv = this
+		        gv.nodes().click(function () {
+				        var $set = $()
+				        $set.push(this)
+				        $set = $set.add(gv.linkedFrom(this, true))
+				        $set = $set.add(gv.linkedTo(this, true))
+				        gv.highlight($set, true)
+				        gv.bringToFront($set)
+		        })
+		        $(document).keydown(function (evt) {
+				        if (evt.keyCode == 27) {
+						        gv.highlight()
+				        }
+		        })
+			        var button = document.getElementById("searchButt");
+			        button.onclick = function() {
+			        var tag =  document.getElementById("tags").value;
+			        var taggedCourses = tagMap[tag]
+			        if (taggedCourses !== undefined){
+				        var $nodisar = $()
+				        for (i = 0; i < taggedCourses.length; i++){
+					        $nodisar.push($(".node").filter(function(){ return $(this).attr('data-name') == taggedCourses[i] }));
+				        }
+				        gv.highlight($nodisar, true)
+		         }
+		         else{
+			         var $emptySet = $(searchButt) //Fulhack
+			         gv.highlight($emptySet, true)
+		         }
+		        };
+            }
+        })
+
+    });
+
+			    //};
+		    //console.log(i)
+									    // tempElems.push($(this).attr('data-name') == taggedCourses[i])
+								    //return tempElems});
+									    //return $(this).attr('data-name') == taggedCourses[i] }); //d3.selectAll(".node")
+				    //console.log(elems)
+				    //function checkName(elems)
+				    //function findNodesByTag(tag){
+				    //	var taggedCourses = tagMap[tag]
+					    //console.log(taggedCourses)
+			    //		return taggedCourses;
+					    //var corrLabels    = labelCodeMap
+		    //
+				    //$nodisar.push(elems)
+				    //$nodisar = $nodisar.add(gv.linkedFrom(elems, true))
+				    //$nodisar = $nodisar.add(gv.linkedTo(elems, true))
+				    //var nodisar = d3.selectAll(".node")
+				    //nodisar = nodisar.add(gv.linkedFrom(this,true))
+				    //gv.highlight($nodis, true)
+	    //	}
+
+
 }
 
 var tagMap = {
