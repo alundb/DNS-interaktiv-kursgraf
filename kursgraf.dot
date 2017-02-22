@@ -139,7 +139,7 @@ digraph {
             analys -> tss
             fysik -> regler
             el -> regler
-            linalg -> flervar
+            linalg -> flervar [minlen = 2]
             linalg -> regler
             oop -> databas
             matdom -> tss
@@ -269,7 +269,7 @@ digraph {
                 concurrent -> computerNetworks
                 dstrukt -> oS
                 mop -> oS
-                concurrent -> oS
+                //concurrent -> oS
                 oS -> computerSecurity
                 oS -> rts
                 concurrent -> rts
@@ -281,7 +281,6 @@ digraph {
 
 
                 //syntes -> digkonstr
-                linalg -> flervar
                 analys -> flervar
                 flervar -> regler
                 dstrukt -> algoritmer
