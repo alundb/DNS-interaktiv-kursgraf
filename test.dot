@@ -1,15 +1,16 @@
 digraph {
 
+	  //graph [overlap=false];
     //nodesep=1
     //concentrate=true;
     //[tailport=n];
     constraint=true;
 
-        ratio=fill
+        ratio=compress
         graph[margin="1,1"]
-        ranksep = 1
+        //ranksep = 1
         rankdir = LR
-        //graph [layout = twopi]
+        //graph [layout = neato            ]
 
         edge[sametail=t1];
         //node [headport=sw];
@@ -18,7 +19,7 @@ digraph {
         fixedsize=true
         //K=10
         //[splines=ortho, overlap = false];
-        //graph [splines="ortho", nodesep = "0.01", overlap = prism];
+        //graph [splines="ortho"];
         //overlap=prism;
         //arrowsize=10.0
         //splines=true
@@ -135,7 +136,6 @@ digraph {
             analys -> tss
             fysik -> regler
             el -> regler
-            linalg -> flervar
             linalg -> regler
             oop -> databas
             matdom -> tss
@@ -255,7 +255,7 @@ digraph {
                 concurrent -> computerNetworks
                 dstrukt -> oS
                 mop -> oS
-                concurrent -> oS
+                //concurrent -> oS
                 oS -> computerSecurity
                 oS -> rts
                 concurrent -> rts
@@ -267,7 +267,7 @@ digraph {
 
 
                 //syntes -> digkonstr
-                linalg -> flervar
+                linalg -> flervar [minlen = 2]
                 analys -> flervar
                 flervar -> regler
                 dstrukt -> algoritmer
