@@ -7,94 +7,61 @@ function genNewGraph (dotFile){
 }
 
 function genGraph(dotFile){
-console.log(dotFile);
-//Parse the .dot file and add the generated html code (which includes the svg element).
-drawDot =  d3.text(dotFile, function(text){
-	var	svgText = Viz(text, "svg");
+  //Parse the .dot file and add the generated html code (which includes the svg element).
+  d3.text(dotFile, function(text){
+    var	svgText = Viz(text, "svg");
     var tempDiv = document.createElement('div');
     tempDiv.id  = 'tempis';
-    //tempDiv.style.height = "95 %" ;
-    //$("#tempDiv").height(90 %);
-
     document.getElementsByTagName('body')[0].appendChild(tempDiv);
 
-
-	//document.body.innerHTML += Viz(text, "svg");
-
-//Add the highlighting effect
-//$(document).ready(function(){
-//addGraphis();
-//function addGraphis(){
-        $("#tempis").graphviz({
-           
-
-
-        		svg: svgText,
-        		ready: function() {
-                         console.log("vi är inne");
-                        var x = d3.selectAll('.node');
-                        x.on("contextmenu", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
-                        var svgGraph = document.getElementsByTagName('svg')[0];
-                        var SelectedGraph = d3.select(svgGraph);
-
-                        //Remove title of graphobject. This avoids having "%3" showing up while hovering.
-                        d3.select("#graph0").select("title").remove();
-
-        				var gv = this
-        				gv.nodes().click(function () {
-        						var $set = $()
-        						$set.push(this)
-        						$set = $set.add(gv.linkedFrom(this, true))
-        						$set = $set.add(gv.linkedTo(this, true))
-        						gv.highlight($set, true)
-        						gv.bringToFront($set)
-        				})
-        				$(document).keydown(function (evt) {
-        						if (evt.keyCode == 27) {
-        								gv.highlight()
-        						}
-        				})
-
-        					var button = document.getElementById("searchButt")
-        					button.onclick = function() {
-        					var tag =  document.getElementById("tags").value;
-        					var taggedCourses = tagMap[tag]
-        					if (taggedCourses !== undefined){
-        						var $nodisar = $()
-        						for (i = 0; i < taggedCourses.length; i++){
-        							$nodisar.push($(".node").filter(function(){ return $(this).attr('data-name') == taggedCourses[i] }));
-        						}
-        						gv.highlight($nodisar, true)
-        				 }
-        				 else{
-        					 var $emptySet = $(searchButt) //Fulhack
-        					 gv.highlight($emptySet, true)
-        				 }
-        				};
-
-        		//console.log(i)
-        									// tempElems.push($(this).attr('data-name') == taggedCourses[i])
-        								//return tempElems});
-        									//return $(this).attr('data-name') == taggedCourses[i] }); //d3.selectAll(".node")
-        				//console.log(elems)
-        				//function checkName(elems)
-        				//function findNodesByTag(tag){
-        				//	var taggedCourses = tagMap[tag]
-        					//console.log(taggedCourses)
-        			//		return taggedCourses;
-        					//var corrLabels    = labelCodeMap
-        		//
+    //Add the highlighting effect
+    $("#tempis").graphviz({
+        svg: svgText,
+    		ready: function() {
+            var x = d3.selectAll('.node');
+            x.on("contextmenu", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
+            //Remove title of graphobject. This avoids having "%3" showing up while hovering.
+            d3.select("#graph0").select("title").remove();
+    				var gv = this
+    				gv.nodes().click(function () {
+    						var $set = $()
+    						$set.push(this)
+    						$set = $set.add(gv.linkedFrom(this, true))
+    						$set = $set.add(gv.linkedTo(this, true))
+    						gv.highlight($set, true)
+    						gv.bringToFront($set)
+    				})
+    				$(document).keydown(function (evt) {
+    						if (evt.keyCode == 27)
+    								gv.highlight()
+    				})
+  					var button = document.getElementById("searchButt")
+  					button.onclick = function() {
+    				  var tag =  document.getElementById("tags").value;
+    					var taggedCourses = tagMap[tag]
+    					if (taggedCourses !== undefined){
+    						var $nodisar = $()
+    						for (i = 0; i < taggedCourses.length; i++){
+    							$nodisar.push($(".node").filter(function(){ return $(this).attr('data-name') == taggedCourses[i] }));
+    						}
+    						gv.highlight($nodisar, true)
+    				  }
+    				  else{
+    					  var $emptySet = $(searchButt) //Fulhack
+    					  gv.highlight($emptySet, true)
+    				  }
+    			  }
+         }
+     })
+})
+}
         				//$nodisar.push(elems)
         				//$nodisar = $nodisar.add(gv.linkedFrom(elems, true))
         				//$nodisar = $nodisar.add(gv.linkedTo(elems, true))
         				//var nodisar = d3.selectAll(".node")
         				//nodisar = nodisar.add(gv.linkedFrom(this,true))
         				//gv.highlight($nodis, true)
-        		}
 
-        });
-});
-}
 
 var tagMap = {
 	"vÃ¤rden" : ["haskell"],

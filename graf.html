@@ -4,8 +4,8 @@
         <title>Kursgraf</title>
         <link rel="stylesheet" href="css/graphviz.svg.css">
         <link rel="stylesheet" href="stylo.css">
-        <link rel="stylesheet" href="d3-context-menu.css" /> 
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">   
+        <link rel="stylesheet" href="d3-context-menu.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
 
         <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -16,20 +16,21 @@
         <script type="text/javascript" src="js/tagList.js"></script>
         <script type="text/javascript" src="js/jquery.graphviz.svg.js"></script>
         <script src="funkis.js"></script>
-        
+
     </head>
     <body>
         <div class="ui-widget">
         <input id="tags" onkeydown = "if (event.keyCode == 13) document.getElementById('searchButt').click()">
         <button id="searchButt" >Sök efter tag</button>
-            
+
         <input type="radio" id="radio1" name="radios" onClick="genNewGraph('kursgraf.dot');" value="all"  checked>
-            <label for="radio1">Kursspecifika förkunskapskrav</label>
+        <label for="radio1">Kursspecifika förkunskapskrav</label>
+
         <input type="radio" id="radio2" name="radios" onClick="genNewGraph('test.dot');" value="false">
-            <label for="radio2">Konceptuell kursrelation</label>
+        <label for="radio2">Konceptuell kursrelation</label>
         </div>
 <!--        <div id="graph" style="width: 100%; height: 97%; overflow: scroll;"></div>-->
 
-    
+
     </body>
 </html>
