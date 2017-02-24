@@ -1,5 +1,5 @@
 
-genGraph("kursgraf.dot");
+genGraph("test.dot");
 
 function genNewGraph (dotFile){
     document.getElementsByTagName('body')[0].removeChild(document.getElementById('tempis'));
