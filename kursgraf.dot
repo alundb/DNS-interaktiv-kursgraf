@@ -3,16 +3,19 @@ digraph {
     //nodesep=1
     //concentrate=true;
     //[tailport=n];
-    constraint=true;
+
+    overlap = prism;
 
         ratio=fill
         graph[margin="1,1"]
         ranksep = 1
         rankdir = LR
         //graph [layout = twopi]
-
+        graph [splines="true", overlap = false];
         edge[sametail=t1];
-        //node [headport=sw];
+        //edge[samehead=t1]
+
+        node [headport=sw];
         nodesep=0.05
         ranksep = 0.2
         fixedsize=true
@@ -74,6 +77,7 @@ digraph {
             diskmat -> haskell
             digodat -> mop
 
+
             subgraph TKDAT2 {
             //edge[samehead=h2, sametail=t2];
             //edge[sametail=t2];
@@ -94,6 +98,7 @@ digraph {
                     }
                     dst      [ label = "Datorsystem-\nteknik"]
             }
+            diskmat -> dstrukt
             mop -> dtekproj
             haskell -> dstrukt
             oop -> dstrukt
@@ -107,7 +112,6 @@ digraph {
             diskmat -> matstat
             analys -> el
             haskell -> matdom
-            oop -> matdom
             diskmat -> matdom
             linalg -> matdom
             analys -> matdom

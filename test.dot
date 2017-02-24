@@ -1,283 +1,145 @@
 digraph {
+	//rankdir=TB
+	clusterrank = local
+	ratio=auto
+	//graph[margin="1,1"]
+	//ranksep = 1
+	rankdir = TB
+	//graph [layout = neato            ]
+	//edge[sametail=t1];
+	//node [headport=sw];
+	//nodesep=0.05
+	//K=10
+	//[splines="ortho", overlap = false]
+	graph [splines="ortho", overlap = prism];
+	//overlap=prism;
+	//arrowsize=10.0
+	//splines=true
+	node [fontname="Latin Modern Sans", fontsize=15]
+	fontname="Latin Modern Sans"
 
-	  //graph [overlap=false];
-    //nodesep=1
-    //concentrate=true;
-    //[tailport=n];
-    constraint=true;
-
-        ratio=compress
-        graph[margin="1,1"]
-        //ranksep = 1
-        rankdir = LR
-        //graph [layout = neato            ]
-
-        edge[sametail=t1];
-        //node [headport=sw];
-        nodesep=0.05
-        ranksep = 0.2
-        fixedsize=true
-        //K=10
-        //[splines=ortho, overlap = false];
-        //graph [splines="ortho"];
-        //overlap=prism;
-        //arrowsize=10.0
-        //splines=true
-        node [fontname="Latin Modern Sans", fontsize=15]
-        fontname="Latin Modern Sans"
-
-        node [style="solid,filled"]
-        //edge[penwidth=1.5];
-
-        subgraph Legend {
-        ordering=out
-
-          //tailport=se
-            node [pin=true]
-            label = "Teckenförklaring"
-            style=tapered;
-            penwidth=0;
-            color=lightgrey;
-            DM2 [fillcolor = "#68E331", label="Master CSN", penwidth=0, pos="1,2!", pin=true]
-            DM1 [fillcolor = "#E33D31", label="Master CSALL", penwidth=0]
-            D3 [fillcolor = "#BC4BEC", label="Årskurs 3", penwidth=0]
-            D2 [fillcolor = "#FFD942", label="Årskurs 2", penwidth=0]
-            D1 [fillcolor = "#ACC5F6", label="Årskurs 1", penwidth=0]
-
-            Valbar [style="dashed", penwidth=2]
-            Obligatorisk [style="solid"]
-        }
-
-        subgraph Fulhack {
-            node[shape=none, width=1, height=0, label="",  style=invis];
-            edge[dir=none, style=invis];
-            L1 ->L1
-        }
+	node [style="solid,filled"]
+	//edge[penwidth=1.5];
+	// subgraph Legend {
+	// 		rankdir = LR
+	// 	//tailport=se
+	// 		node [pin=true]
+	// 		label = "Teckenförklaring"
+	// 		style=tapered;
+	// 		penwidth=0;
+	// 		color=lightgrey;
+	// 		DM2 [fillcolor = "#68E331", label="Master CSN", penwidth=0, pos="1,2!", pin=true]
+	// 		DM1 [fillcolor = "#E33D31", label="Master CSALL", penwidth=0]
+	// 		D3 [fillcolor = "#BC4BEC", label="Årskurs 3", penwidth=0]
+	// 		D2 [fillcolor = "#FFD942", label="Årskurs 2", penwidth=0]
+	// 		D1 [fillcolor = "#ACC5F6", label="Årskurs 1", penwidth=0]
+	//
+	// 		Valbar [style="dashed", penwidth=2]
+	// 		Obligatorisk [style="solid"]
+	// }
 
 
-        subgraph TKDAT1 {
-          //concentrate=true;
-            label = "TKDAT-1"
-                // rank = same
 
-                node [fillcolor="#ACC5F6"]
-                haskell  [label = "Funktionell\nprogrammering"]
-                diskmat  [label = "Diskret\nmatematik"]
-                linalg   [label = "Linjär\nalgebra"]
-                digodat  [label = "Grundläggande\ndatorteknik"]
-                analys   [label = "Matematisk\nanalys"]
-                mop      [label = "Maskinorienterad\nprogrammering"]
-                datakom  [label = "Data-\nkommunikation"]
-                oop      [label = "Objektorienterad\nprogrammering"]
-        }
-        //edge[sametail=t1,samehead=h1]
-            //diskmat -> digodat
-            //diskmat -> haskell
-            digodat -> mop
-
-            subgraph TKDAT2 {
-            tailport=se
-                label = "TKDAT-2"
-                    // rank = same
-                    node [fillcolor="#FFD942"]
-                    matstat  [label = "Matematisk\nstatistik"]
-                    dtekproj [label = "Datatekniskt\nprojekt"]
-                    fysik    [label = "Fysik för\ningenjörer"]
-                    dstrukt  [label = "Datastrukturer"]
-                    syntes   [label = "Digital konstruktion"]
-                    el       [label = "Elektriska kretsar &\nfält"]
-                    subgraph {
-                        node [style="dashed, filled", penwidth=2]
-                        matdom     [label = "Matematikens domän-\nspecifika språk"]
-                        concurrent [label = "Parallell\nprogrammering"]
-                    }
-                    dst      [ label = "Datorsystem-\nteknik"]
-            }
-            mop -> dtekproj
-            //haskell -> dstrukt
-            //oop -> dstrukt
-            //oop -> concurrent
-            digodat -> syntes
-            mop -> dst
-            analys -> fysik
-            linalg -> matstat
-            analys -> matstat
-            diskmat -> matstat
-            analys -> el
-            haskell -> matdom
-            //oop -> matdom
-            diskmat -> matdom
-            linalg -> matdom
-            analys -> matdom
-
-            subgraph TKDAT3 {
-                label = "TKDAT-3"
-                    // rank = same
-                    node [fillcolor = "#BC4BEC"]
-                    tss      [label = "Transformer, signaler\noch system"]
-                    regler   [label = "Reglerteknik"]
-                    kandidat [label = "Kandidatarbete"]
-                    barsaft  [label = "Miljökurs"]
-                    mts      [label = "MTS-kurser"]
-                    subgraph {
-                        node [style="dashed, filled", penwidth=2]
-                        elektronik [label="Elektronik"]
-                        databas    [label="Databaser"]
-                        flervar    [label = "Analys i\nflera variabler"]
-                        //digkonstr  [label = "Digital-\nkonstruktion, projektkurs"]
-                        fysik2     [label = "Fysik 2"]
-                        web        [label = "Web-applikationer"]
-                        deskonstr  [label = "Design/konstruktion\nav grafiska gränssnitt"]
-                    }
-            }
-        		analys -> elektronik
-            el -> elektronik
-            tss -> regler
-            analys -> tss
-            fysik -> regler
-            el -> regler
-            linalg -> regler
-            oop -> databas
-            matdom -> tss
-            matdom -> advFunc
-            fysik -> fysik2
-            oop -> deskonstr
-            oop -> web
-            databas -> web
-            datakom -> web
-            dstrukt -> web
-
-            subgraph CSALL {
-
-                label = "CSALL"
-                    // rank = same
-                    node [fillcolor="#E33D31"]
-                    prolang    [label = "Programming\nlanguage tech"]
-                    algoritmer [label = "Algorithms"]
-                    logik      [label = "Logic in CS"]
-                    cscience   [label = "The Computer Scientist\nin Society"]
-
-                    // Valbara
-                    subgraph {
-                        node [style="dashed, filled", penwidth=2]
-                        advAlg   [label = "Advanced\nalgorithms"]
-                        discopt  [label = "Discrete optimization"]
-                        ml       [label = "Machine learning"]
-                        ai       [label = "Artifical intelligence"]
-                        models   [label = "Models of computation"]
-                        types    [label = "Types for programs\nand proofs "]
-                        softEng  [label = "Software eng.\nusing formal meth."]
-                        compilerConst [label="Compiler construction"]
-                        advFunc  [label = "Advanced\nfunc. prog",fillcolor="#E33D31", style="dashed, filled"]
-                        paraFunc [label = "Parallel functional\nprogramming"]
-                        crypto   [label = "Cryptography"]
-                        langsecurity [label = "Language-based\nsecurity"]
-                    }
-            }
-
-            algoritmer -> advAlg
-            matstat -> advAlg
-            linalg -> advAlg
-            mop -> prolang
-            dstrukt -> prolang
-            algoritmer -> ml
-            prolang -> paraFunc
-            diskmat -> models
-            logik -> models
-            diskmat -> crypto
-            dstrukt -> crypto
-            oop -> prolang
-            haskell -> types
-            logik -> types
-            types -> models
-            algoritmer -> discopt
-            linalg -> discopt
+	subgraph toMPSYS {
 
 
-            concurrent -> softEng
 
-            dstrukt -> ml
-            logik -> softEng
+			//linalg   [label = "Linjär\nalgebra"]
+			// analys   [label = "Matematisk\nanalys"]
+      // //matstat  [label = "Matematisk\nstatistik"]
+			// fysik    [label = "Fysik för\ningenjörer"]
+			// el       [label = "Elektriska kretsar &\nfält"]
+			// //matdom   [label = "Matematikens domän-\nspecifika språk"]
+			//
+			// tss      [label = "Transformer, signaler\noch system"]
+			// regler   [label = "Reglerteknik"]
+			// flervar    [label = "Analys i\nflera variabler"]
+			// elektronik [label="Elektronik"]
+			// fysik2     [label = "Fysik 2"]
+// node [style=filled];
 
-            diskmat -> logik  [minlen = 3]
+// 			label = "process #1";
+//
+// 			color=blue;
 
-            analys -> ml
+}
 
-            matstat -> ml
+subgraph cluster_1 {
+	//	linalg   [label = "Linjär\nalgebra"]
+	//matstat  [label = "Matematisk\nstatistik"]
 
-            linalg -> ml
-            haskell -> advFunc
-            prolang -> advFunc
-            logik -> advFunc
-            algoritmer -> ai
-            dstrukt -> compilerConst
-            prolang -> langsecurity
+	//matdom   [label = "Matematikens domän-\nspecifika språk"]
 
-            dstrukt -> langsecurity
+	node [fillcolor="#ACC5F6"]
+	analys   [label = "Matematisk\nanalys"]
+	node [fillcolor="#FFD942"]
+	fysik    [label = "Fysik för\ningenjörer"]
+	el       [label = "Elektriska kretsar &\nfält"]
+	node [fillcolor="#BC4BEC"]
+	tss      [label = "Transformer, signaler\noch system"]
+	regler   [label = "Reglerteknik"]
+	subgraph {
+			node [style="dashed, filled", penwidth=2]
+			elektronik [label="Elektronik"]
+			flervar    [label = "Analys i\nflera variabler"]
+			fysik2     [label = "Fysik 2"]
+	}
+	node [style=filled];
+				analys -> fysik
+				 			    fysik -> fysik2
+				analys -> el -> elektronik
+									el -> regler
+				analys -> flervar [minlen = 2]
+									flervar -> regler
+				analys -> tss [minlen = 2]
+									tss -> regler
+	label = "Inriktning #1";
+	//color=blue
+}
 
-            prolang -> compilerConst
+subgraph cluster_2 {
+	subgraph TKDAT1 {
+		node [fillcolor="#ACC5F6"]
+		digodat  [label = "Grundläggande\ndatorteknik"]
+		mop      [label = "Maskinorienterad\nprogrammering"]
+	}
+	subgraph TKDAT2 {
+		node [fillcolor="#FFD942"]
+		dtekproj [label = "Datatekniskt\nprojekt"]
+		syntes   [label = "Digital konstruktion"]
+		dst      [ label = "Datorsystem-\nteknik"]
+	}
+		node [style=filled];
+		digodat -> syntes
+		digodat -> mop
+							 mop -> dst
+							 mop -> dtekproj
+label = "Inriktning #2";
+}
 
-            subgraph CSN {
-                node [fillcolor="#68E331"]
-                computerNetworks [label="Computer networks"]
-                oS [label="Operating systems"]
-                ftcs [label="Fault tolerant\ncomputer systems"]
-                techwrite [label = "Tech. writing\nin CSN"]
+subgraph cluster_3 {
+	subgraph TKDAT1 {
+		node [fillcolor="#ACC5F6"]
+		haskell  [label = "Funktionell\nprogrammering"]
+		diskmat  [label = "Diskret\nmatematik"]
+	}
+	subgraph TKDAT2 {
+		node [fillcolor="#FFD942"]
+		dstrukt  [label = "Datastrukturer"]
+	}
+	node [fillcolor="#BC4BEC"]
+	algoritmer [label = "Algorithms"]
 
-                // Valbara
-                subgraph {
-                    node [style="dashed, filled", penwidth=2]
-                    advDistSys [label="Advanced\ndistributed systems"]
-                    networkSecurity [label="Network security"]
-                    computerSecurity [label="Computer security"]
-                    rts [label="Real time\nsystems"]
-                    parallelOrganization [label="Parallel computer\norganization and design"]
-                    parallelRTS [label="Parallel and distributed\nreal-time systems"]
-                    distSys [label="Distributed systems"]
-                    energyComp [label="Energy aware\ncomputing"]
-                    routerSwitch [label="Routing and\nswitching technology"]
-                    commEng [label="Introduction to\ncommunication engineering"]
-                    compArch [label="Computer architecture"]
-                }
-            }
-            dtekproj -> techwrite
-                dst -> compArch
-                tss -> commEng
-                datakom -> routerSwitch
-                dst -> energyComp
-                matstat -> ftcs
-                tss -> ftcs
-                concurrent -> ftcs
-                concurrent -> distSys
-                distSys -> advDistSys
-                datakom -> networkSecurity
-                datakom -> computerNetworks
-                concurrent -> computerNetworks
-                dstrukt -> oS
-                mop -> oS
-                //concurrent -> oS
-                oS -> computerSecurity
-                oS -> rts
-                concurrent -> rts
-                rts -> parallelRTS
-                algoritmer -> parallelRTS
-                computerSecurity -> networkSecurity
-                concurrent -> parallelOrganization
-                dst -> parallelOrganization
+		node [style=filled];
+diskmat -> haskell
+diskmat -> dstrukt
+dstrukt -> algoritmer
+label = "Inriktning #3";
+
+}
 
 
-                //syntes -> digkonstr
-                linalg -> flervar [minlen = 2]
-                analys -> flervar
-                flervar -> regler
-                dstrukt -> algoritmer
-                haskell -> algoritmer
-                //edge[sametail=t2,samehead=h1];
-                diskmat -> algoritmer
-                //edge[sametail=t1,samehead=h1];
-                matstat -> algoritmer
 
-//                lolnode [label="", image="sndlogo.svg"]
 
 
 }
