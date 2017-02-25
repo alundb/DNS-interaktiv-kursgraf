@@ -3,7 +3,7 @@ digraph {
     //nodesep=1
     //concentrate=true;
     //[tailport=n];
-
+    bgcolor = "#2e3e56"
     overlap = prism;
 
         ratio=fill
@@ -14,7 +14,7 @@ digraph {
         graph [splines="true", overlap = false];
         edge[sametail=t1];
         //edge[samehead=t1]
-
+        edge[color="#EEEEEE"];
         node [headport=sw];
         nodesep=0.05
         ranksep = 0.2
@@ -42,9 +42,9 @@ digraph {
             color=lightgrey;
             DM2 [fillcolor = "#68E331", label="Master CSN", penwidth=0, pos="1,2!", pin=true]
             DM1 [fillcolor = "#E33D31", label="Master CSALL", penwidth=0]
-            D3 [fillcolor = "#BC4BEC", label="Årskurs 3", penwidth=0]
-            D2 [fillcolor = "#FFD942", label="Årskurs 2", penwidth=0]
-            D1 [fillcolor = "#ACC5F6", label="Årskurs 1", penwidth=0]
+            D3 [fillcolor = "#4493bb", label="Årskurs 3", penwidth=0]
+            D2 [fillcolor = "#5dd8d8", label="Årskurs 2", penwidth=0]
+            D1 [fillcolor = "#e6f2ee", label="Årskurs 1", penwidth=0]
 
             Valbar [style="dashed", penwidth=2]
             Obligatorisk [style="solid"]
@@ -62,7 +62,7 @@ digraph {
             label = "TKDAT-1"
                 // rank = same
 
-                node [fillcolor="#ACC5F6"]
+                node [fillcolor="#e6f2ee"]
                 haskell  [label = "Funktionell\nprogrammering"]
                 diskmat  [label = "Diskret\nmatematik"]
                 linalg   [label = "Linjär\nalgebra"]
@@ -84,7 +84,7 @@ digraph {
             tailport=se
                 label = "TKDAT-2"
                     // rank = same
-                    node [fillcolor="#FFD942"]
+                    node [fillcolor="#5dd8d8"]
                     matstat  [label = "Matematisk\nstatistik"]
                     dtekproj [label = "Datatekniskt\nprojekt"]
                     fysik    [label = "Fysik för\ningenjörer"]
@@ -119,7 +119,7 @@ digraph {
             subgraph TKDAT3 {
                 label = "TKDAT-3"
                     // rank = same
-                    node [fillcolor = "#BC4BEC"]
+                    node [fillcolor = "#4493bb"]
                     tss      [label = "Transformer, signaler\noch system"]
                     regler   [label = "Reglerteknik"]
                     kandidat [label = "Kandidatarbete"]
