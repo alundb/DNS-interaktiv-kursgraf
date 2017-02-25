@@ -3,7 +3,9 @@ genGraph("test.dot");
 
 function genNewGraph (dotFile){
     document.getElementsByTagName('body')[0].removeChild(document.getElementById('tempis'));
-    genGraph(dotFile);
+    $( document ).ready(function() {
+      genGraph(dotFile);
+  })
 }
 
 function genGraph(dotFile){
@@ -12,6 +14,7 @@ function genGraph(dotFile){
     var	svgText = Viz(text, "svg");
     var tempDiv = document.createElement('div');
     tempDiv.id  = 'tempis';
+
     document.getElementsByTagName('body')[0].appendChild(tempDiv);
 
     //Add the highlighting effect

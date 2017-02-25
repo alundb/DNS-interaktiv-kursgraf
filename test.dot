@@ -1,21 +1,22 @@
 digraph {
 	//rankdir=TB
 	clusterrank = local
-	ratio=auto
+	ratio=fill
+	  bgcolor = "#2e3e56"
 	//graph[margin="1,1"]
 	//ranksep = 1
-	rankdir = TB
+	rankdir = LR
+	node [height=1, width = 2.1]
 	//graph [layout = neato            ]
 	//edge[sametail=t1];
 	//node [headport=sw];
 	//nodesep=0.05
 	//K=10
-	//[splines="ortho", overlap = false]
-	graph [splines="ortho", overlap = prism];
+	graph [splines=ortho, overlap = false];
 	//overlap=prism;
 	//arrowsize=10.0
 	//splines=true
-	node [fontname="Latin Modern Sans", fontsize=15]
+	node [fontname="Latin Modern Sans", fontsize=12]
 	fontname="Latin Modern Sans"
 
 	node [style="solid,filled"]
@@ -38,106 +39,219 @@ digraph {
 	// 		Obligatorisk [style="solid"]
 	// }
 
+	subgraph cluster_3 {
+		node [fillcolor = "#4493bb"]
 
-
-	subgraph toMPSYS {
-
-
-
-			//linalg   [label = "Linjär\nalgebra"]
-			// analys   [label = "Matematisk\nanalys"]
-      // //matstat  [label = "Matematisk\nstatistik"]
-			// fysik    [label = "Fysik för\ningenjörer"]
-			// el       [label = "Elektriska kretsar &\nfält"]
-			// //matdom   [label = "Matematikens domän-\nspecifika språk"]
-			//
-			// tss      [label = "Transformer, signaler\noch system"]
-			// regler   [label = "Reglerteknik"]
-			// flervar    [label = "Analys i\nflera variabler"]
-			// elektronik [label="Elektronik"]
-			// fysik2     [label = "Fysik 2"]
-// node [style=filled];
-
-// 			label = "process #1";
-//
-// 			color=blue;
-
-}
-
-subgraph cluster_1 {
-	//	linalg   [label = "Linjär\nalgebra"]
-	//matstat  [label = "Matematisk\nstatistik"]
-
-	//matdom   [label = "Matematikens domän-\nspecifika språk"]
-
-	node [fillcolor="#ACC5F6"]
-	analys   [label = "Matematisk\nanalys"]
-	node [fillcolor="#FFD942"]
-	fysik    [label = "Fysik för\ningenjörer"]
-	el       [label = "Elektriska kretsar &\nfält"]
-	node [fillcolor="#BC4BEC"]
-	tss      [label = "Transformer, signaler\noch system"]
-	regler   [label = "Reglerteknik"]
-	subgraph {
+		subgraph cluster_3_4 {
+			kandidat_3_4 [label = "Kandidatarbete"]
 			node [style="dashed, filled", penwidth=2]
-			elektronik [label="Elektronik"]
-			flervar    [label = "Analys i\nflera variabler"]
+			models   [label = "Models of computation"]
+			elektronik_3_4 [label="Elektronik"]
+			flervar_3_4    [label = "Analys i\nflera variabler"]
+			algoritmer_3_4 [label = "Algorithms"]
+			ai       [label = "Artifical intelligence"]
+
+			kandidat_3_4 -> models -> elektronik_3_4 ->
+			flervar_3_4 -> algoritmer_3_4 -> ai [constraint=false,style=invis]
+			matsam [label = "Matematik och\nsamhälle"]
+			vethis [label = "Vetenskaps-\nhistoria"]
+			teksam [label = "Teknik och\nsamhälle"]
+
+				matsam -> vethis -> teksam [constraint=false,style=invis]
+			 //ai -> matsam  [constraint=false,style=invis];
+		}
+		subgraph cluster_3_3 {
+			kandidat_3_3 [label = "Kandidatarbete"]
+			node [style="dashed, filled", penwidth=2]
+			web        [label = "Web-applikationer"]
+			deskonstr  [label = "Design/konstruktion\nav grafiska gränssnitt"]
+			matdom_3_3     [label = "Matematikens domän-\nspecifika språk"]
+			elektronik_3_3 [label="Elektronik"]
+			databas    [label="Databaser"]
+			flervar_3_3    [label = "Flervariabelanalys"]
+			advFunc  [label = "Advanced\nfunc. prog"]
+			concurrent_3_3 [label = "Parallell\nprogrammering"]
+
+			kandidat_3_3 -> web -> deskonstr -> matdom_3_3 ->
+			elektronik_3_3 -> databas -> flervar_3_3 -> advFunc
+			-> concurrent_3_3 [constraint=false,style=invis]
+		}
+		subgraph cluster_3_2 {
+			regler   [label = "Reglerteknik"]
+			barsaft  [label = "Miljökurs"]
+			node 		[style="dashed, filled", penwidth=2]
+			skon     [label = "Skönlitteratur för \ningenjörer"]
+
+			regler -> barsaft -> skon [constraint=false,style = invis]
+		}
+
+		subgraph cluster_3_1 {
+			tss     	 [label = "Transformer, signaler\noch system"]
+			node 	[style="dashed, filled", penwidth=2]
+			flervar_3_1    [label = "Analys i\nflera variabler"]
+			concurrent_3_1 [label = "Parallell\nprogrammering"]
+			algoritmer_3_1 [label = "Algorithms"]
 			fysik2     [label = "Fysik 2"]
-	}
-	node [style=filled];
-				analys -> fysik
-				 			    fysik -> fysik2
-				analys -> el -> elektronik
-									el -> regler
-				analys -> flervar [minlen = 2]
-									flervar -> regler
-				analys -> tss [minlen = 2]
-									tss -> regler
-	label = "Inriktning #1";
-	//color=blue
-}
+			skon3_1     [label = "Skönlitteratur för \ningenjörer"]
+			tss -> flervar_3_1 -> concurrent_3_1 -> fysik2 ->
+			skon3_1  -> algoritmer_3_1 [constraint=false,style = invis]
 
-subgraph cluster_2 {
-	subgraph TKDAT1 {
-		node [fillcolor="#ACC5F6"]
-		digodat  [label = "Grundläggande\ndatorteknik"]
-		mop      [label = "Maskinorienterad\nprogrammering"]
+		}
+		tss -> regler ->kandidat_3_3 -> kandidat_3_4 [style = invis]
+		fontcolor = "#EEEEEE";
+		label = "TKDAT-3"
+	//			XXX -> XXX -> XXX -> XXX -> XXX -> XXX
+	//		XXX -> XXX -> XXX -> XXX -> XXX -> XXX
 	}
-	subgraph TKDAT2 {
-		node [fillcolor="#FFD942"]
-		dtekproj [label = "Datatekniskt\nprojekt"]
-		syntes   [label = "Digital konstruktion"]
-		dst      [ label = "Datorsystem-\nteknik"]
+
+
+	subgraph cluster_2 {
+		node [fillcolor="#5dd8d8"]
+		subgraph cluster_2_4 {
+			el       [label = "Elektriska kretsar &\nfält"]
+			dst      [label = "Datorsystem-\nteknik"]}
+		subgraph cluster_2_3 {
+			syntes   [label = "Digital konstruktion"]
+			node [style="dashed, filled", penwidth=2]
+			matdom     [label = "Matematikens domän-\nspecifika språk"]
+			concurrent [label = "Parallell\nprogrammering"]}
+		subgraph cluster_2_2 {
+			fysik    [label = "Fysik för\ningenjörer"]
+			dstrukt  [label = "Datastrukturer"]}
+		subgraph cluster_2_1 {
+			matstat  [label = "Matematisk\nstatistik"]
+			dtekproj [label = "Datatekniskt\nprojekt"]}
+		fontcolor = "#EEEEEE";
+		label = "TKDAT-2"
+		matstat -> dtekproj 		[constraint=false,style = invis]
+		fysik   -> dstrukt  		[constraint=false,style = invis]
+		syntes  -> matdom   		[constraint=false,style = invis]
+		matdom  -> concurrent 	[constraint=false,style = invis]
+		el      -> dst 					[constraint=false,style = invis]
+
+		matstat -> fysik -> syntes -> el [style = invis]
 	}
-		node [style=filled];
-		digodat -> syntes
-		digodat -> mop
-							 mop -> dst
-							 mop -> dtekproj
-label = "Inriktning #2";
-}
 
-subgraph cluster_3 {
-	subgraph TKDAT1 {
-		node [fillcolor="#ACC5F6"]
-		haskell  [label = "Funktionell\nprogrammering"]
-		diskmat  [label = "Diskret\nmatematik"]
+	subgraph cluster_1 {
+	//	rank = same
+			node [fillcolor="#e6f2ee"]
+			subgraph cluster_1_4 {
+
+				mop      [label = "Maskinorienterad\nprogrammering"]
+				datakom  [label = "Data-\nkommunikation"]}
+			subgraph cluster_1_3 {
+				analys   [label = "Matematisk\nanalys"]
+				oop      [label = "Objektorienterad\nprogrammering"]}
+			subgraph cluster_1_2 {
+				linalg   [label = "Linjär\nalgebra"]
+				digodat  [label = "Grundläggande\ndatorteknik"]}
+			subgraph cluster_1_1 {
+				diskmat  [label = "Diskret\nmatematik"]
+				haskell  [label = "Funktionell\nprogrammering"]}
+			fontcolor = "#EEEEEE";
+			label = "TKDAT-1"
+			diskmat -> haskell [constraint=false,style = invis]
+			linalg  -> digodat [constraint=false,style = invis]
+			analys  -> oop     [constraint=false,style = invis]
+			mop     -> datakom [constraint=false,style = invis]
+
+			diskmat -> linalg -> analys -> mop  [style = invis]
 	}
-	subgraph TKDAT2 {
-		node [fillcolor="#FFD942"]
-		dstrukt  [label = "Datastrukturer"]
-	}
-	node [fillcolor="#BC4BEC"]
-	algoritmer [label = "Algorithms"]
 
-		node [style=filled];
-diskmat -> haskell
-diskmat -> dstrukt
-dstrukt -> algoritmer
-label = "Inriktning #3";
 
-}
+	compound=true
+	 haskell -> matstat  [ltail=cluster_1,lhead=cluster_2, constraint = false,style = invis]
+	 digodat -> fysik    [ltail=cluster_1,lhead=cluster_2, constraint = false,style = invis]
+	 oop -> syntes       [ltail=cluster_1,lhead=cluster_2, constraint = false,style = invis]
 
+	 dtekproj -> tss     [ltail=cluster_2,lhead=cluster_3, constraint = false,style = invis]
+	 dstrukt  -> regler  [ltail=cluster_2,lhead=cluster_3, constraint = false,style = invis]
+	 concurrent -> kandidat_3_3  [ltail=cluster_2,lhead=cluster_3,constraint = false,style = invis]
+	 dst ->   kandidat_3_4 [ltail=cluster_2,lhead=cluster_3,constraint = false,style = invis]
+	 //oop -> syntes
+	 //datakom -> el
+
+	 //concurrent -> kandidat_3_3
+
+
+	 //concurrent -> kandidat_3_3  [ltail=cluster_1,lhead=cluster_3];
+
+
+
+
+
+
+//}
+
+
+	// node [fillcolor="#ACC5F6"]
+	// analys   [label = "Matematisk\nanalys"]
+	// node [fillcolor="#FFD942"]
+	// fysik    [label = "Fysik för\ningenjörer"]
+	// el       [label = "Elektriska kretsar &\nfält"]
+	// node [fillcolor="#BC4BEC"]
+	// tss      [label = "Transformer, signaler\noch system"]
+	// regler   [label = "Reglerteknik"]
+	// subgraph cluster_1_1 {
+	// 		node [style="dashed, filled", penwidth=2]
+	// 		elektronik [label="Elektronik"]
+	// 		flervar    [label = "Analys i\nflera variabler"]
+	// 		fysik2     [label = "Fysik 2"]
+	// }
+	// node [style=filled];
+	// 			analys -> fysik
+	// 			 			    fysik -> fysik2
+	// 			analys -> el -> elektronik
+	// 								el -> regler
+	// 			analys -> flervar [minlen = 2]
+	// 								flervar -> regler
+	// 			analys -> tss [minlen = 2]
+	// 								tss -> regler
+// 	// label = "Inriktning #1";
+// 	// //color=blue
+// }
+//
+// subgraph cluster_2 {
+// 	subgraph TKDAT1 {
+// 		node [fillcolor="#ACC5F6"]
+// 		digodat  [label = "Grundläggande\ndatorteknik"]
+// 		mop      [label = "Maskinorienterad\nprogrammering"]
+// 	}
+// 	subgraph TKDAT2 {
+// 		node [fillcolor="#FFD942"]
+// 		dtekproj [label = "Datatekniskt\nprojekt"]
+// 		syntes   [label = "Digital konstruktion"]
+// 		dst      [ label = "Datorsystem-\nteknik"]
+// 	}
+// 		node [style=filled];
+// 		digodat -> syntes
+// 		digodat -> mop
+// 							 mop -> dst
+// 							 mop -> dtekproj
+// label = "Inriktning #2";
+// }
+//
+// subgraph cluster_3 {
+// 	subgraph TKDAT1 {
+// 		node [fillcolor="#ACC5F6"]
+// 		haskell  [label = "Funktionell\nprogrammering"]
+// 		diskmat  [label = "Diskret\nmatematik"]
+// 	}
+// 	subgraph TKDAT2 {
+// 		node [fillcolor="#FFD942"]
+// 		dstrukt  [label = "Datastrukturer"]
+// 	}
+// 	node [fillcolor="#BC4BEC"]
+// 	algoritmer [label = "Algorithms"]
+//
+// 		node [style=filled];
+// diskmat -> haskell
+// diskmat -> dstrukt
+// dstrukt -> algoritmer
+// label = "Inriktning #3";
+//
+// }
+//
 
 
 
