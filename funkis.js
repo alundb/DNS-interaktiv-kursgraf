@@ -23,9 +23,14 @@ function genGraph(dotFile){
     $("#tempis").graphviz({
         svg: svgText,
     		ready: function() {
+
+
+
             var x = d3.selectAll('.node');
             x.on("contextmenu", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
             //Add zooming to non-mobile devices.
+
+
             if (!( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )) {
                 var svgGraph = document.getElementsByTagName('svg')[0];
                 svgPanZoom(svgGraph, {
@@ -49,7 +54,17 @@ function genGraph(dotFile){
                 , eventsListenerElement: null
                 });
             }
+
     				var gv = this
+            $(window).click(function(e) {
+                var container = $(".node");
+                if (!container.is(e.target) // if the target of the click isn't the container...
+                      && container.has(e.target).length === 0) // ... nor a descendant of the container
+                {
+                    gv.highlight()
+                }
+            })
+
     				gv.nodes().click(function () {
     						var $set = $()
     						$set.push(this)
@@ -62,6 +77,8 @@ function genGraph(dotFile){
     						if (evt.keyCode == 27)
     								gv.highlight()
     				})
+
+
   					var button = document.getElementById("searchButt")
   					button.onclick = function() {
     				  var tag =  document.getElementById("tags").value;
