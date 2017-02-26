@@ -1,0 +1,11 @@
+    var svgGraph = document.getElementById("graph0")
+            var SelectedGraph = d3.select(svgGraph);
+            var zoom = d3.behavior.zoom()
+                .scaleExtent([1, 1000])
+                .on("zoom", zoomed);
+
+                function zoomed() {
+                    SelectedGraph.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+              }
+
+             SelectedGraph.call(d3.behavior.zoom().scaleExtent([1, 10]).on("zoom", function() { SelectedGraph.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")"); }))
