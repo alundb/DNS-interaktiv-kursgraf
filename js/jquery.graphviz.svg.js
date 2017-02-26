@@ -173,6 +173,7 @@
     if (options.zoom) {
       this.setupZoom()
     }
+    //this.scaleView(100.0)
 
     // tell people we're done
     if (options.ready) {
@@ -248,31 +249,31 @@
     var $svg = this.$svg
     this.zoom = {width: $svg.attr('width'), height: $svg.attr('height'), percentage: null }
     this.scaleView(100.0)
-    $element.mousewheel(function (evt) {
-        if (evt.shiftKey) {
-          var percentage = that.zoom.percentage
-          percentage -= evt.deltaY * evt.deltaFactor
-          if (percentage < 100.0) {
-            percentage = 100.0
-          }
-          // get pointer offset in view
-          // ratio offset within svg
-          var dx = evt.pageX - $svg.offset().left
-          var dy = evt.pageY - $svg.offset().top
-          var rx = dx / $svg.width()
-          var ry = dy / $svg.height()
-
-          // offset within frame ($element)
-          var px = evt.pageX - $element.offset().left
-          var py = evt.pageY - $element.offset().top
-
-          that.scaleView(percentage)
-          // scroll so pointer is still in same place
-          $element.scrollLeft((rx * $svg.width()) + 0.5 - px)
-          $element.scrollTop((ry * $svg.height()) + 0.5 - py)
-          return false // stop propogation
-        }
-      })
+    // $element.mousewheel(function (evt) {
+    //     if (evt.shiftKey) {
+    //       var percentage = that.zoom.percentage
+    //       percentage -= evt.deltaY * evt.deltaFactor
+    //       if (percentage < 100.0) {
+    //         percentage = 100.0
+    //       }
+    //       // get pointer offset in view
+    //       // ratio offset within svg
+    //       var dx = evt.pageX - $svg.offset().left
+    //       var dy = evt.pageY - $svg.offset().top
+    //       var rx = dx / $svg.width()
+    //       var ry = dy / $svg.height()
+    //
+    //       // offset within frame ($element)
+    //       var px = evt.pageX - $element.offset().left
+    //       var py = evt.pageY - $element.offset().top
+    //
+    //       that.scaleView(percentage)
+    //       // scroll so pointer is still in same place
+    //       $element.scrollLeft((rx * $svg.width()) + 0.5 - px)
+    //       $element.scrollTop((ry * $svg.height()) + 0.5 - py)
+    //       return false // stop propogation
+    //     }
+    //   })
   }
 
   GraphvizSvg.prototype.scaleView = function(percentage) {

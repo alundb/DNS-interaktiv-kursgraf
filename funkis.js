@@ -15,7 +15,7 @@ function genGraph(dotFile){
     var tempDiv = document.createElement('div');
     tempDiv.id  = 'tempis';
 
-    //var myZoomBehavior=d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", zoom)
+
 
     document.getElementsByTagName('body')[0].appendChild(tempDiv);
 
@@ -25,24 +25,30 @@ function genGraph(dotFile){
     		ready: function() {
             var x = d3.selectAll('.node');
             x.on("contextmenu", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
-            //Remove title of graphobject. This avoids having "%3" showing up while hovering.
-            //d3.select("#graph0").select("title").remove();
-           var svgGraph = document.getElementsByTagName('svg')[0];
-           panZoomInstance = svgPanZoom(svgGraph, {
-             zoomEnabled: true,
-             fit: true,
-             center: true,
-             minZoom: 1.01
-           });
-
-           // zoom out
-           panZoomInstance.zoom(1)
-
-           $("#move").on("click", function() {
-           // Pan by any values from -80 to 80
-           panZoomInstance.panBy({x: Math.round(Math.random() * 160 - 80), y: Math.round(Math.random() * 160 - 80)})
-           });
-
+            //Add zooming to non-mobile devices.
+            if (!( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )) {
+                var svgGraph = document.getElementsByTagName('svg')[0];
+                svgPanZoom(svgGraph, {
+                 panEnabled: true
+                , controlIconsEnabled: false
+                , zoomEnabled: true
+                , dblClickZoomEnabled: false
+                , mouseWheelZoomEnabled: true
+                , preventMouseEventsDefault: false
+                , zoomScaleSensitivity: 0.2
+                , minZoom: 1
+                , maxZoom: 10
+                , fit: true
+                , contain: true
+                , center: true
+                , refreshRate: 'auto'
+                , beforeZoom: function(){}
+                , onZoom: function(){}
+                , beforePan: function(){}
+                , onPan: function(){}
+                , eventsListenerElement: null
+                });
+            }
     				var gv = this
     				gv.nodes().click(function () {
     						var $set = $()
@@ -76,15 +82,6 @@ function genGraph(dotFile){
      })
 })
 }
-        				//$nodisar.push(elems)
-        				//$nodisar = $nodisar.add(gv.linkedFrom(elems, true))
-        				//$nodisar = $nodisar.add(gv.linkedTo(elems, true))
-        				//var nodisar = d3.selectAll(".node")
-        				//nodisar = nodisar.add(gv.linkedFrom(this,true))
-        				//gv.highlight($nodis, true)
-
-
-
 
 //function labelToCode (label){
 //}
