@@ -93,7 +93,7 @@
         return col
       },
       unselected: function (col, bg) {
-        //console.log(bg)
+        console.log(bg)
         //console.log(jQuery.Color(col).transition(bg, 0.9))
         return   jQuery.Color(col).transition("#2e3e56", 0.9) //"#2e3e56"
       }
@@ -367,7 +367,7 @@
 
   GraphvizSvg.prototype.colorElement = function ($el, getColor) {
     var bg = this.$element.css('background')
-    //console.log(bg)
+    console.log(bg)
     $el.find('polygon, ellipse, path').each(function() {
       var $this = $(this)
       var color = $this.data('graphviz.svg.color')

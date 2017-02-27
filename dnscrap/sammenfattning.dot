@@ -1,0 +1,57 @@
+digraph G {
+
+    rankdir = LR
+
+	subgraph cluster_0 {
+		style=filled;
+		color=lightgrey;
+		node [style=filled,color=white];
+        node[group=branches];
+        Kursutvärdering
+        Programråd
+        Institutionsråd
+		Kursutvärdering -> Programråd -> Institutionsråd  [weight = 1000, constraint=false, style=invis];
+	//	label = "process #1";
+	}
+	
+	subgraph cluster_1 {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+	    Utbildningsutskott   
+	}
+	
+    kåren -> Utbildningsutskott 
+    -> DNS [minlen = 2]
+	
+	{rank=same kåren DNS}
+	
+        studs [label = "Studenters\nåsikter"]
+    	
+    	studs -> DNS [label ="Mail"]
+    	studs -> DNS [label ="Personligt kontaktande"]
+        studs -> DNS [label ="Studentrösten"]
+        
+
+
+	    teachers2 [label = "Lärare"]
+        DNS -> Kursutvärdering
+        DNS -> Institutionsråd
+    	DNS -> Programråd
+
+    	Kursutvärdering  -> Lärare [dir=back];
+    	Kursutvärdering  -> Programansvarig [dir=back];
+    	Programråd       -> Programansvarig [dir=back];
+    	Programråd       -> Industrirepresentanter [dir=back];
+    	Programråd       -> Lärare [dir=back];
+        Institutionsråd  ->	teachers2 [dir=back];
+        Institutionsråd  ->	prefekt [dir=back];
+        Institutionsråd  -> Industrirepresentanter [dir=back];
+
+
+    //	Institutionsråd  -> "Lärare" [dir=back];
+
+
+
+
+}

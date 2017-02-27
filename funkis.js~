@@ -1,445 +1,106 @@
 
-genGraph("kursgraf.dot");
+genGraph("test.dot");
 
 function genNewGraph (dotFile){
     document.getElementsByTagName('body')[0].removeChild(document.getElementById('tempis'));
-    genGraph(dotFile);
+    $( document ).ready(function() {
+      genGraph(dotFile);
+  })
 }
 
 function genGraph(dotFile){
-console.log(dotFile);
-//Parse the .dot file and add the generated html code (which includes the svg element).
-drawDot =  d3.text(dotFile, function(text){
-	var	svgText = Viz(text, "svg");
+  //Parse the .dot file and add the generated html code (which includes the svg element).
+  d3.text(dotFile, function(text){
+    var	svgText = Viz(text, "svg");
     var tempDiv = document.createElement('div');
     tempDiv.id  = 'tempis';
-    //tempDiv.style.height = "95 %" ;
-    //$("#tempDiv").height(90 %);
+
+
 
     document.getElementsByTagName('body')[0].appendChild(tempDiv);
 
-
-	//document.body.innerHTML += Viz(text, "svg");
-
-//Add the highlighting effect
-//$(document).ready(function(){
-//addGraphis();
-//function addGraphis(){
-        $("#tempis").graphviz({
-           
-
-
-        		svg: svgText,
-        		ready: function() {
-                         console.log("vi är inne");
-                        var x = d3.selectAll('.node');
-                        x.on("contextmenu", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
-                        var svgGraph = document.getElementsByTagName('svg')[0];
-                        var SelectedGraph = d3.select(svgGraph);
-
-                        //Remove title of graphobject. This avoids having "%3" showing up while hovering.
-                        d3.select("#graph0").select("title").remove();
-
-        				var gv = this
-        				gv.nodes().click(function () {
-        						var $set = $()
-        						$set.push(this)
-        						$set = $set.add(gv.linkedFrom(this, true))
-        						$set = $set.add(gv.linkedTo(this, true))
-        						gv.highlight($set, true)
-        						gv.bringToFront($set)
-        				})
-        				$(document).keydown(function (evt) {
-        						if (evt.keyCode == 27) {
-        								gv.highlight()
-        						}
-        				})
-
-        					var button = document.getElementById("searchButt")
-        					button.onclick = function() {
-        					var tag =  document.getElementById("tags").value;
-        					var taggedCourses = tagMap[tag]
-        					if (taggedCourses !== undefined){
-        						var $nodisar = $()
-        						for (i = 0; i < taggedCourses.length; i++){
-        							$nodisar.push($(".node").filter(function(){ return $(this).attr('data-name') == taggedCourses[i] }));
-        						}
-        						gv.highlight($nodisar, true)
-        				 }
-        				 else{
-        					 var $emptySet = $(searchButt) //Fulhack
-        					 gv.highlight($emptySet, true)
-        				 }
-        				};
-
-        		//console.log(i)
-        									// tempElems.push($(this).attr('data-name') == taggedCourses[i])
-        								//return tempElems});
-        									//return $(this).attr('data-name') == taggedCourses[i] }); //d3.selectAll(".node")
-        				//console.log(elems)
-        				//function checkName(elems)
-        				//function findNodesByTag(tag){
-        				//	var taggedCourses = tagMap[tag]
-        					//console.log(taggedCourses)
-        			//		return taggedCourses;
-        					//var corrLabels    = labelCodeMap
-        		//
-        				//$nodisar.push(elems)
-        				//$nodisar = $nodisar.add(gv.linkedFrom(elems, true))
-        				//$nodisar = $nodisar.add(gv.linkedTo(elems, true))
-        				//var nodisar = d3.selectAll(".node")
-        				//nodisar = nodisar.add(gv.linkedFrom(this,true))
-        				//gv.highlight($nodis, true)
-        		}
-
-        });
-});
-}
-
-var tagMap = {
-	"vÃ¤rden" : ["haskell"],
-	"typer" : ["haskell"],
-	"funktioner" : ["haskell", "diskmat", "analys"],
-	"datastrukturer" : ["haskell", "dstrukt", "algoritmer"],
-	"listor" : ["haskell", "dstrukt"],
-	"tupler" : ["haskell"],
-	"anvÃ¤ndardefinierade typer" : ["haskell"],
-	"top-down programdesign" : ["haskell"],
-	"rekursion" : ["haskell", "diskmat", "algoritmer"],
-	"rekursiva typer" : ["haskell"],
-	"tidskomplexitet" : ["haskell"],
-	"input-output" : ["haskell"],
-	"moduler" : ["haskell"],
-	"abstraktion" : ["haskell"],
-	"verifiering" : ["haskell", "mop"],
-	"hÃ¶gre ordningens funktioner" : ["haskell", "advFunc"],
-	"data-centrisk programmering" : ["haskell"],
-	"logik" : ["diskmat"],
-	"mÃ¤ngdlÃ¤ra" : ["diskmat"],
-	"relationer" : ["diskmat"],
-	"bevis" : ["diskmat", "matdom"],
-	"motsÃ¤gelsebevis" : ["diskmat"],
-	"heltalsaritmetik" : ["diskmat"],
-	"kombinatorik" : ["diskmat", "dstrukt"],
-	"grafteori" : ["diskmat", "dstrukt"],
-	"boolesk algebra" : ["diskmat", "digodat"],
-	"kombinatoriska nÃ¤t" : ["digodat", "syntes"],
-	"sekvensnÃ¤t" : ["digodat", "syntes"],
-	"alu" : ["digodat", "syntes"],
-	"datavÃ¤g" : ["digodat", "syntes", "dst"],
-	"styrenhet" : ["digodat", "syntes"],
-	"minne" : ["digodat", "syntes", "dst"],
-	"in- och ut- enheter" : ["digodat", "syntes", "dst"],
-	"instruktionsuppsÃ¤ttning" : ["digodat", "syntes"],
-	"maskinsprÃ¥k" : ["digodat"],
-	"assembler" : ["digodat", "mop", "dst"],
-	"digitalteknik" : ["digodat", "syntes", "dst"],
-	"matriser" : ["linalg"],
-	"vektorer" : ["linalg"],
-	"linjÃ¤ra avbildningar" : ["linalg"],
-	"ekvationssystem" : ["linalg"],
-	"egenvektorer" : ["linalg"],
-	"egenvÃ¤rden" : ["linalg", "matdom"],
-	"baser" : ["linalg"],
-	"dimensioner" : ["linalg", "flervar"],
-	"relationsmatriser" : ["linalg"],
-	"matlab" : ["linalg", "flervar"],
-	"objektorienterad" : ["oop"],
-	"objekt" : ["oop"],
-	"klass" : ["oop"],
-	"datainkapsling" : ["oop"],
-	"konstruktorer" : ["oop"],
-	"metoder" : ["oop"],
-	"instansvariabler" : ["oop"],
-	"klassvariabler" : ["oop"],
-	"standardbibliotek" : ["oop"],
-	"kodningsstandard" : ["oop"],
-	"namnsÃ¤ttning" : ["oop"],
-	"kommentering" : ["oop"],
-	"derivata" : ["analys"],
-	"intergral" : ["analys"],
-	"linjÃ¤risering" : ["analys", "regler"],
-	"optimalitetskriterier" : ["analys"],
-	"polynom" : ["analys"],
-	"potensserier" : ["analys", "matdom"],
-	"envariabelanalys" : ["analys"],
-	"kretskoppling" : ["datakom"],
-	"paketkoppling" : ["datakom"],
-	"datornÃ¤tverk" : ["datakom"],
-	"distribuerad" : ["datakom"],
-	"applikationsprotokoll" : ["datakom"],
-	"www" : ["datakom"],
-	"dns" : ["datakom"],
-	"sockets" : ["datakom"],
-	"datagram" : ["datakom"],
-	"dataÃ¶verfÃ¶ring" : ["datakom"],
-	"tcp" : ["datakom"],
-	"udp" : ["datakom"],
-	"stockningskontroll" : ["datakom"],
-	"internet" : ["datakom"],
-	"protokoll" : ["datakom", "dtekproj"],
-	"adressering" : ["datakom"],
-	"ipv4" : ["datakom"],
-	"ipv6" : ["datakom"],
-	"arp" : ["datakom"],
-	"icmp" : ["datakom"],
-	"dv" : ["datakom"],
-	"ls" : ["datakom"],
-	"autonoma system" : ["datakom"],
-	"rip" : ["datakom"],
-	"ospf" : ["datakom"],
-	"bgp" : ["datakom"],
-	"lan" : ["datakom"],
-	"mac" : ["datakom"],
-	"ethernet" : ["datakom"],
-	"switching" : ["datakom"],
-	"vlan" : ["datakom"],
-	"trÃ¥dlÃ¶s" : ["datakom"],
-	"brandvÃ¤gg" : ["datakom"],
-	"paket" : ["datakom"],
-	"wlan" : ["datakom"],
-	"c" : ["mop"],
-	"test" : ["mop"],
-	"systemprogrammering" : ["mop"],
-	"hÃ¤ndelser" : ["mop"],
-	"avbrott" : ["mop"],
-	"rÃ¤knarkretsar" : ["mop"],
-	"seriekommunikation" : ["mop"],
-	"tidsdelningssystem" : ["mop"],
-	"periferikretsar" : ["mop"],
-	"mikrodatorsystem" : ["dtekproj"],
-	"mikroprocessor" : ["dtekproj"],
-	"periferienheter" : ["dtekproj"],
-	"projektarbete" : ["dtekproj"],
-	"versionshantering" : ["dtekproj"],
-	"rapport" : ["dtekproj"],
-	"dokumentation" : ["dtekproj"],
-	"sannolikhetslÃ¤ra" : ["matstat"],
-	"markovkedjor" : ["matstat"],
-	"stokastisk" : ["matstat"],
-	"vÃ¤ntevÃ¤rde" : ["matstat"],
-	"varians" : ["matstat"],
-	"korrelation" : ["matstat"],
-	"stora talens lag" : ["matstat"],
-	"centrala grÃ¤nsvÃ¤rdessatsen" : ["matstat"],
-	"statistik" : ["matstat"],
-	"skattningar" : ["matstat"],
-	"konfidensintervall" : ["matstat"],
-	"kombinationer" : ["matstat", "diskmat"],
-	"permutationer" : ["matstat", "diskmat"],
-	"modeller" : ["matstat"],
-	"abstrakta datatyper" : ["dstrukt"],
-	"komplexitetsanalys" : ["dstrukt"],
-	"trÃ¤d" : ["dstrukt"],
-	"fÃ¤lt" : ["dstrukt"],
-	"hashtabeller" : ["dstrukt"],
-	"kÃ¶er" : ["dstrukt"],
-	"prioritetskÃ¶er" : ["dstrukt"],
-	"lexika" : ["dstrukt"],
-	"grafer" : ["dstrukt"],
-	"iteratorer" : ["dstrukt"],
-	"sortering" : ["dstrukt"],
-	"mekanik" : ["fysik"],
-	"newton" : ["fysik"],
-	"rÃ¶relser" : ["fysik"],
-	"komponenterna" : ["fysik"],
-	"partiklar" : ["fysik"],
-	"vÃ¤rmelÃ¤ra" : ["fysik"],
-	"termodynamik" : ["fysik", "fysik2"],
-	"processer" : ["fysik", "fysik2"],
-	"vÃ¥gfysik" : ["fysik"],
-	"vÃ¥gor" : ["fysik"],
-	"interferens" : ["fysik", "concurrent"],
-	"diffraktion" : ["fysik"],
-	"arbete" : ["fysik"],
-	"energi" : ["fysik"],
-	"rotationsrÃ¶relse" : ["fysik"],
-	"rÃ¶relsemÃ¤ngd" : ["fysik"],
-	"rÃ¶relsemÃ¤ngdsmoment" : ["fysik"],
-	"oscillationer" : ["fysik"],
-	"superposition" : ["fysik"],
-	"differentialekvationer" : ["fysik"],
-	"transienta fÃ¶rlopp" : ["fysik", "el", "regler"],
-	"asic" : ["syntes"],
-	"fpga" : ["syntes"],
-	"vhdl" : ["syntes"],
-	"digitala kretsar" : ["syntes"],
-	"hÃ¥rdvarukonstruktion" : ["syntes"],
-	"processor" : ["syntes", "dst"],
-	"tillstÃ¥ndsmaskin" : ["syntes"],
-	"dsl" : ["matdom", "advFunc"],
-	"domÃ¤nspecifikt sprÃ¥k" : ["matdom"],
-	"funktionell programmering" : ["matdom", "advFunc"],
-	"programkalkyl" : ["matdom"],
-	"kategoriteori" : ["matdom", "advFunc"],
-	"medelvÃ¤rdessatser" : ["matdom"],
-	"taylors formel" : ["matdom"],
-	"haskell" : ["matdom", "haskell", "advFunc"],
-	"laplace" : ["matdom", "tss", "flervar"],
-	"transformer" : ["matdom", "tss"],
-	"parallellism" : ["concurrent"],
-	"synkronisering" : ["concurrent"],
-	"kritiska regioner" : ["concurrent"],
-	"Ã¶msesidig uteslutning" : ["concurrent"],
-	"deadlock" : ["concurrent"],
-	"livelock" : ["concurrent"],
-	"busy waiting" : ["concurrent"],
-	"semaforer" : ["concurrent"],
-	"monitorer" : ["concurrent"],
-	"rendezvous" : ["concurrent"],
-	"erlang" : ["concurrent"],
-	"linda" : ["concurrent"],
-	"resource allocation" : ["concurrent"],
-	"dining philosophers" : ["concurrent"],
-	"pipelining" : ["dst"],
-	"minneshierarki" : ["dst"],
-	"cacheminnen" : ["dst"],
-	"huvudminne" : ["dst"],
-	"virtuellt minne" : ["dst"],
-	"fler-kÃ¤rniga" : ["dst"],
-	"kretselement" : ["el"],
-	"ohm" : ["el"],
-	"kirchhoff" : ["el"],
-	"effekt" : ["el"],
-	"elektriska nÃ¤t" : ["el"],
-	"vÃ¤xelstrÃ¶m" : ["el"],
-	"frekvensegenskaper" : ["el"],
-	"bodediagram" : ["el", "regler"],
-	"operationsfÃ¶rstÃ¤rkare" : ["el", "elektronik"],
-	"elektromagnetism" : ["el"],
-	"likstrÃ¶m" : ["el"],
-	"strÃ¶m" : ["el"],
-	"spÃ¤nning" : ["el"],
-	"absolut summer" : ["tss"],
-	"energisignaler" : ["tss"],
-	"bandbegrÃ¤nsade signaler" : ["tss"],
-	"linjÃ¤ritet" : ["tss"],
-	"skift-invarians" : ["tss"],
-	"kausalitet" : ["tss"],
-	"bibo" : ["tss"],
-	"fourierserier" : ["tss"],
-	"fourier" : ["tss"],
-	"z-transform" : ["tss"],
-	"fouriertransform" : ["tss"],
-	"lti" : ["tss"],
-	"lti-ekvationen" : ["tss"],
-	"nyquist-frekvensen" : ["tss", "regler"],
-	"samplingsteoremet" : ["tss", "regler"],
-	"dft" : ["tss"],
-	"sampling" : ["tss"],
-	"lti-system" : ["tss"],
-	"signalmodeller" : ["tss"],
-	"parseval" : ["tss"],
-	"impulssvar" : ["tss"],
-	"stegsvar" : ["tss"],
-	"Ã¶verfÃ¶ringsfunktion" : ["tss"],
-	"frekvenssvar" : ["tss"],
-	"maxwell-boltzmanns fÃ¶rdelningsfunktion" : ["fysik2"],
-	"fasta tillstÃ¥nd" : ["fysik2"],
-	"kristallstruktur" : ["fysik2"],
-	"rÃ¶ntgen" : ["fysik2"],
-	"elektrondiffraktion" : ["fysik2"],
-	"fermi-diracs fÃ¶rdelningsfunktion" : ["fysik2"],
-	"tillstÃ¥ndstÃ¤theter" : ["fysik2"],
-	"frielektronmodellen" : ["fysik2"],
-	"elektronstruktur" : ["fysik2"],
-	"fotoelektronspektra" : ["fysik2"],
-	"brillouinzoner" : ["fysik2"],
-	"konduktivitet" : ["fysik2"],
-	"isolatorer" : ["fysik2"],
-	"halvledare" : ["fysik2"],
-	"roman" : ["skon"],
-	"novell" : ["skon"],
-	"pjÃ¤s" : ["skon"],
-	"poesi" : ["skon"],
-	"texter" : ["skon"],
-	"kreativt skrivande" : ["skon"],
-	"litteraturteori" : ["skon"],
-	"narratologi" : ["skon"],
-	"lÃ¤sarstrategier" : ["skon"],
-	"skÃ¶nlitteratur" : ["skon"],
-	"tolkning" : ["skon"],
-	"mÃ¤nniska-teknologi-samhÃ¤lle" : ["skon"],
-	"mts" : ["skon"],
-	"algoritm" : ["algoritmer", "dstrukt"],
-	"o-notation" : ["algoritmer", "dstrukt"],
-	"ordo" : ["algoritmer", "dstrukt"],
-	"grafalgoritmer" : ["algoritmer", "dstrukt"],
-	"giriga algoritmer" : ["algoritmer", "dstrukt"],
-	"divide-and-conquer" : ["algoritmer"],
-	"dynamisk programmering" : ["algoritmer"],
-	"backtracking" : ["algoritmer"],
-	"implicita sÃ¶ktrÃ¤d" : ["algoritmer"],
-	"branch-and-bound" : ["algoritmer"],
-	"komplexitetsteori" : ["algoritmer", "dstrukt"],
-	"approximationsalgoritmer" : ["algoritmer"],
-	"p" : ["algoritmer"],
-	"np" : ["algoritmer"],
-	"npc" : ["algoritmer"],
-	"rummet" : ["flervar", "linalg"],
-	"grÃ¤nsvÃ¤rden" : ["flervar", "analys"],
-	"kontinuitet" : ["flervar", "analys"],
-	"differentierbarhet" : ["flervar", "analys"],
-	"kedjeregeln" : ["flervar", "analys"],
-	"partiella derivator" : ["flervar", "analys"],
-	"gradient" : ["flervar", "analys"],
-	"tangentplan" : ["flervar"],
-	"differentialer" : ["flervar"],
-	"funktionalmatriser" : ["flervar"],
-	"funktionaldeterminanter" : ["flervar"],
-	"trippelintegraler" : ["flervar"],
-	"variabelsubstitution" : ["flervar"],
-	"polÃ¤rakoordinater" : ["flervar", "analys"],
-	"sfÃ¤riska koordinater" : ["flervar"],
-	"arean av buktig yta" : ["flervar"],
-	"greens formel" : ["flervar"],
-	"kurvintegraler" : ["flervar"],
-	"normalytintegraler" : ["flervar"],
-	"stokes satser" : ["flervar"],
-	"vÃ¥gekvationen" : ["flervar"],
-	"hÃ¥llbara energisystem" : ["barsaft"],
-	"ekologi" : ["barsaft"],
-	"vÃ¤xthuseffekten" : ["barsaft"],
-	"reglerproblem" : ["regler"],
-	"Ã¥terkoppling" : ["regler"],
-	"framkoppling" : ["regler"],
-	"servofunktioner" : ["regler"],
-	"parametervariationer" : ["regler"],
-	"Ã¶verfÃ¶ringsfunktioner" : ["regler"],
-	"transient- och frekvensanalys" : ["regler"],
-	"filter" : ["regler"],
-	"pi- och pid-regulatorer" : ["regler"],
-	"kaskadreglering" : ["regler"],
-	"monader" : ["advFunc"],
-	"domÃ¤nspecifika programbibliotek" : ["advFunc"],
-	"pretty printing" : ["advFunc"],
-	"syntax" : ["advFunc", "matdom"],
-	"semantik" : ["advFunc", "matdom"],
-	"funktorer" : ["advFunc"],
-	"monadtransformerare" : ["advFunc"],
-	"resistorer" : ["elektronik"],
-	"kondensatorer" : ["elektronik"],
-	"induktorer" : ["elektronik"],
-	"transistorer" : ["elektronik"],
-	"effektsteg" : ["elektronik"],
-	"mÃ¶nsterkort" : ["elektronik"],
-	"databas" : ["databas"],
-	"sql" : ["databas"],
-	"jdbc" : ["databas"],
-	"xml" : ["databas"],
-	"grafiskt grÃ¤nssnitt" : ["deskonstr"],
-	"html" : ["web"],
-	"css" : ["web"],
-	"javascript" : ["web"],
-	"ajax" : ["web"],
-	"java servlet api" : ["web"],
-	"java server faces" : ["web"]
+    //Add the highlighting effect
+    $("#tempis").graphviz({
+        svg: svgText,
+    		ready: function() {
 
 
 
+            var x = d3.selectAll('.node');
+            x.on("contextmenu", d3.contextMenu(menu)); //Add contextmenu to all nodes and eges.
+            //Add zooming to non-mobile devices.
 
 
+            if (!( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )) {
+                var svgGraph = document.getElementsByTagName('svg')[0];
+                svgPanZoom(svgGraph, {
+                 panEnabled: true
+                , controlIconsEnabled: false
+                , zoomEnabled: true
+                , dblClickZoomEnabled: false
+                , mouseWheelZoomEnabled: true
+                , preventMouseEventsDefault: false
+                , zoomScaleSensitivity: 0.2
+                , minZoom: 1
+                , maxZoom: 10
+                , fit: true
+                , contain: true
+                , center: true
+                , refreshRate: 'auto'
+                , beforeZoom: function(){}
+                , onZoom: function(){}
+                , beforePan: function(){}
+                , onPan: function(){}
+                , eventsListenerElement: null
+                });
+            }
 
+    				var gv = this
+            $(window).click(function(e) {
+                var allNodes = $(".node");
+                var searchis = $("#honke");
+                if   (!allNodes.is(e.target) && allNodes.has(e.target).length === 0  // if the target of the click isn't the container...
+                    && !searchis.is(e.target) && searchis.has(e.target).length === 0)  // ... nor a descendant of the container
+                {
+                    gv.highlight()
+                }
+            })
+
+    				gv.nodes().click(function () {
+    						var $set = $()
+    						$set.push(this)
+    						$set = $set.add(gv.linkedFrom(this, true))
+    						$set = $set.add(gv.linkedTo(this, true))
+    						gv.highlight($set, true)
+    						gv.bringToFront($set)
+    				})
+    				$(document).keydown(function (evt) {
+    						if (evt.keyCode == 27)
+    								gv.highlight()
+    				})
+
+
+  					var button = document.getElementById("searchButt")
+  					button.onclick = function() {
+                    
+    				  var tag =  document.getElementById("tags").value;
+    					var taggedCourses = tagMap[tag]
+    					if (taggedCourses !== undefined){
+                        console.log("hej")
+    						var $nodisar = $()
+    						for (i = 0; i < taggedCourses.length; i++){
+    							$nodisar.push($(".node").filter(function(){ return $(this).attr('data-name') == taggedCourses[i] }));
+    						}
+    						gv.highlight($nodisar, true)
+    				  }
+    				  else{
+    					  var $emptySet = $(searchButt) //Fulhack
+    					  gv.highlight($emptySet, true)
+    				  }
+    			  }
+         }
+     })
+})
 }
 
 //function labelToCode (label){
