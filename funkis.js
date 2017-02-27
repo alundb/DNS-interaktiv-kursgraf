@@ -59,13 +59,20 @@ function genGraph(dotFile){
             $(window).click(function(e) {
                 var allNodes = $(".node");
                 var searchis = $("#honke");
+                var menyiss = $("#ui-id-1")
+        
                 if   (!allNodes.is(e.target) && allNodes.has(e.target).length === 0)  // if the target of the click isn't the container...
-                    if (!searchis.is(e.target) && searchis.has(e.target).length === 0) {
-                    gv.highlight()
+                    if (!searchis.is(e.target) && searchis.has(e.target).length === 0)
+                        if (!menyiss.is(e.target) && menyiss.has(e.target).length === 0){
+                            gv.highlight()
+                        }
+
+                    
+                    
                       // ... nor a descendant of the container
                     
-                }
-            })
+                })
+            
 
     				gv.nodes().click(function () {
     						var $set = $()
