@@ -57,11 +57,13 @@ function genGraph(dotFile){
 
     				var gv = this
             $(window).click(function(e) {
-                var container = $(".node");
-                if (!container.is(e.target) // if the target of the click isn't the container...
-                      && container.has(e.target).length === 0) // ... nor a descendant of the container
-                {
+                var allNodes = $(".node");
+                var searchis = $("#honke");
+                if   (!allNodes.is(e.target) && allNodes.has(e.target).length === 0)  // if the target of the click isn't the container...
+                    if (!searchis.is(e.target) && searchis.has(e.target).length === 0) {
                     gv.highlight()
+                      // ... nor a descendant of the container
+                    
                 }
             })
 
@@ -81,9 +83,11 @@ function genGraph(dotFile){
 
   					var button = document.getElementById("searchButt")
   					button.onclick = function() {
+                    
     				  var tag =  document.getElementById("tags").value;
     					var taggedCourses = tagMap[tag]
     					if (taggedCourses !== undefined){
+                        console.log("hej")
     						var $nodisar = $()
     						for (i = 0; i < taggedCourses.length; i++){
     							$nodisar.push($(".node").filter(function(){ return $(this).attr('data-name') == taggedCourses[i] }));

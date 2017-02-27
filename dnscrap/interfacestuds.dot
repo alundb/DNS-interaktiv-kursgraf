@@ -1,0 +1,35 @@
+digraph G {
+
+    rankdir = LR
+
+	subgraph cluster_0 {
+//		style=filled;
+//		color=lightgrey;
+//		node [style=filled,color=white];
+ //       node[group=branches];
+ //       Kursutvärdering
+//        Programråd
+//        Institutionsråd
+//		Kursutvärdering -> Programråd -> Institutionsråd  [weight = 1000, constraint=false, style=invis];
+	//	label = "process #1";
+	}
+
+        studs [label = "Studenters\nåsikter"]
+    	
+    	studs -> DNS [label ="Mail"]
+    	studs -> DNS [label ="Personligt kontaktande"]
+        studs -> DNS [label ="Studentrösten"]
+        
+        
+        
+        
+        
+        
+
+
+    //	Institutionsråd  -> "Lärare" [dir=back];
+
+
+
+
+}
