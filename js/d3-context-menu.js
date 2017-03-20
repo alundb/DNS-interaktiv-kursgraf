@@ -1,7 +1,6 @@
 d3.contextMenu = function (menu, openCallback) {
 
 	// create the div element that will hold the context menu
-	console.log($(this));
 	d3.selectAll('.d3-context-menu').data([1])
 		.enter()
 		.append('div')
