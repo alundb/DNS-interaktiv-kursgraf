@@ -5,10 +5,6 @@ input[type=radio], input[type=checkbox] {
 		display:none;
 	}
 
-  body {
-    background-color: #2e3e56;
-  }
-
 input[type=radio] + label, input[type=checkbox] + label {
 		display:inline-block;
 		margin:-2px;
@@ -51,6 +47,11 @@ input[type=radio] + label, input[type=checkbox] + label {
 /*    background: #2e3e56;*/
       background: #2e3e56;
   }
+
+.node { 
+    background-color: #FFF; 
+    cursor: pointer;
+}
 
 
 #tempis
