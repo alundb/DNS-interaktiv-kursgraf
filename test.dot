@@ -78,7 +78,7 @@ digraph {
 		}
 		subgraph cluster_3_2 {
 			regler   [label = "Reglerteknik"]
-			barsaft  [label = "Miljökurs"]
+			barsaft  [label = "Modellering av hållbara\nenergisystem"]
 			node 		[style="dashed, filled", penwidth=2]
 			skon     [label = "Skönlitteratur för \ningenjörer"]
 

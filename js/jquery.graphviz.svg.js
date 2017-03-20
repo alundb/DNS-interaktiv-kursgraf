@@ -198,9 +198,9 @@
       })
 
       // shrink it if it's a node
-      if (isNode && options.shrink) {
-        that.scaleNode($this)
-      }
+//      if (isNode && options.shrink) {
+//        that.scaleNode($this)
+//      }
     })
 
     // save the node name and check if theres a comment above; save it
