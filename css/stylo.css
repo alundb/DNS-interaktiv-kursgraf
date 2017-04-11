@@ -48,15 +48,14 @@ input[type=radio] + label, input[type=checkbox] + label {
       background: #2e3e56;
   }
 
-.node { 
-    background-color: #FFF; 
+.node {
+    background-color: #FFF;
 }
 
 
 #tempis
 {
     height: 97%;
-  background-color: yellow;
 
 /*    padding:5px; margin-bottom:8px;*/
 /*    border: 1px solid #EFEFEF;*/

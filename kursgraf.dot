@@ -46,8 +46,8 @@ digraph {
             D2 [fillcolor = "#5dd8d8", label="Årskurs 2", penwidth=0]
             D1 [fillcolor = "#e6f2ee", label="Årskurs 1", penwidth=0]
 
-            Valbar [style="dashed", penwidth=2]
-            Obligatorisk [style="solid"]
+            Valbar [fillcolor = "#2e3e56", label="Valbar" style="dashed, filled", penwidth=2]
+            Obligatorisk [fillcolor = "#2e3e56",style="filled"]
         }
 
         subgraph Fulhack {
@@ -92,12 +92,14 @@ digraph {
                     syntes   [label = "Digital konstruktion"]
                     el       [label = "Elektriska kretsar &\nfält"]
                     subgraph {
-                        node [style="dashed, filled", penwidth=2]
-                        matdom     [label = "Matematikens domän-\nspecifika språk"]
-                        concurrent [label = "Parallell\nprogrammering"]
+                        node [style="dashed, wedged",fillcolor="#5dd8d8:#4493bb", penwidth=2]
+                        matdom     [label = "Matematikens domän-\nspecifika språk"];
+                        concurrent [label = "Parallell\nprogrammering"];
+                        //concurrent [label = "Parallell\nprogrammering"]
                     }
                     dst      [ label = "Datorsystem-\nteknik"]
             }
+
             diskmat -> dstrukt
             mop -> dtekproj
             haskell -> dstrukt
@@ -122,7 +124,7 @@ digraph {
                     node [fillcolor = "#4493bb"]
                     tss      [label = "Transformer, signaler\noch system"]
                     regler   [label = "Reglerteknik"]
-                    
+
                     kandidat [label = "Kandidatarbete"]
                     mts      [label = "MTS-kurser"]
                     barsaft  [label = "Modellering av hållbara\nenergisystem"]
@@ -135,6 +137,8 @@ digraph {
                         fysik2     [label = "Fysik 2"]
                         web        [label = "Web-applikationer"]
                         deskonstr  [label = "Design/konstruktion\nav grafiska gränssnitt"]
+
+                        algoritmer     [label = "Algorithms", style="wedged,dashed",fillcolor="#4493bb:#E33D31", penwidth=2];
                     }
             }
             //edge[sametail=t2,samehead=h2]
@@ -162,7 +166,7 @@ digraph {
                     // rank = same
                     node [fillcolor="#E33D31"]
                     prolang    [label = "Programming\nlanguage tech"]
-                    algoritmer [label = "Algorithms"]
+                    //algoritmer [label = "Algorithms"]
                     logik      [label = "Logic in CS"]
                     cscience   [label = "The Computer Scientist\nin Society"]
 
