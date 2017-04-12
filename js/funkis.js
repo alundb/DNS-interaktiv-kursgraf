@@ -104,15 +104,21 @@ function genGraph(dotFile){
                 })
 
                 //Reset selection when pressing outside of a node or the menu
-                var searchis = $("#honke");
-                var menyiss  = $("#ui-id-1");
-                $(window).click(function(e) {
-                if (!allNodes.is(e.target) && allNodes.has(e.target).length === 0) // if the target of the click isn't the container...
-                    if (!searchis.is(e.target) && searchis.has(e.target).length === 0)    // nor a descendant of the container
-                        if (!menyiss.is(e.target) && menyiss.has(e.target).length === 0) // -||-
-                            gv.highlight()  // then highlight every node.
-                })
-
+                var currentPos = [];
+                $("#tempis").mousedown(function(evt) {
+                    currentPos = [evt.pageX, evt.pageY]
+                    $(document).on('mousemove', function handler(evt) {
+                      currentPos=[evt.pageX, evt.pageY];
+                      $(document).off('mousemove', handler);
+                    });
+                    $(document).on('mouseup', function handler(evt) {
+                      if(evt.pageX === currentPos[0] && evt.pageY===currentPos[1]){
+                        if (allNodes.has(evt.target).length === 0)   // if the target is not any of the nodes
+                            gv.highlight()                                                      // then highlight every node.
+                      }
+                      $(document).off('mouseup', handler);
+                    });
+                });
                 //Highlight nodes when a search match occurs
                 var button = document.getElementById("searchButt")
                 button.onclick = function() {
@@ -134,7 +140,6 @@ function genGraph(dotFile){
      })
 })
 }
-
 
 var dnslink ="https://dns.dtek.se/preview/search.php?&query="
 var menu = [
