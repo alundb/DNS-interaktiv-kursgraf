@@ -11,7 +11,7 @@ function genNewGraph (dotFile){
 function genGraph(dotFile){
   //Parse the .dot file and add the generated html code (which includes the svg element).
     d3.text(dotFile, function(text){
-        var  svgText = Viz(text, "svg");
+        var svgText = Viz(text, "svg");
         var tempDiv = document.createElement('div');
         tempDiv.id  = 'tempis';
         document.getElementsByTagName('body')[0].appendChild(tempDiv);
@@ -47,10 +47,9 @@ function genGraph(dotFile){
                     , eventsListenerElement: null
                     });
                 }
-                var gv = this
-                var $yearOne = $();
+                //Highlight nodes of the selected year
                 var allNodes = $(".node");
-                var yearOne   = ['D1','haskell','diskmat', 'linalg', 'digodat','analys', 'mop', 'datakom', 'oop'];
+                var yearOne   = ['D1','haskell','diskmat', 'linalg', 'digodat', 'analys', 'mop', 'datakom', 'oop'];
                 var yearTwo   = ['D2','matstat','dtekproj', 'fysik', 'dstrukt', 'syntes', 'el', 'matdom', 'concurrent', 'dst'];
                 var yearThree = ['D3','tss','concurrent','algoritmer','regler', 'kandidat', 'matdom', 'mts', 'barsaft', 'elektronik', 'databas', 'flervar', 'fysik2', 'web', 'deskonstr'];
                 var alg       = ['DM1','prolang','algoritmer', 'logik', 'cscience', 'advAlg', 'discopt', 'ml', 'ai', 'models', 'types', 'softEng',
@@ -75,41 +74,38 @@ function genGraph(dotFile){
                     electSet.push($(".node").filter(function(){ return $(this).attr('data-name') == elective[i] }));
                     mandaSet.push($(".node").filter(function(){ return $(this).attr('data-name') == mandatory[i] }));
                 }
-
+                var gv = this;
                 gv.nodes().click(function () {
-                var $set = $()
-                $set.push(this)
-                $set = $set.add(gv.linkedFrom(this, true))
-                $set = $set.add(gv.linkedTo(this, true))
-                gv.highlight($set, true)
-                gv.bringToFront($set)
-                if ($(this).attr('data-name') == "D1")
-                    gv.highlight(yearOneSet, true)
-                if ($(this).attr('data-name') == "D2")
-                    gv.highlight(yearTwoSet, true)
-                if ($(this).attr('data-name') == "D3")
-                    gv.highlight(yearThreeSet, true)
-                if ($(this).attr('data-name') == "DM1")
-                    gv.highlight(algSet, true)
-                if ($(this).attr('data-name') == "DM2")
-                    gv.highlight(csnSet, true)
-                if ($(this).attr('data-name') == "Valbar")
-                    gv.highlight(electSet, true)
-                if ($(this).attr('data-name') == "Obligatorisk")
-                    gv.highlight(mandaSet, true)
+                    var $set = $()
+                    $set.push(this)
+                    $set = $set.add(gv.linkedFrom(this, true))
+                    $set = $set.add(gv.linkedTo(this, true))
+                    gv.highlight($set, true)
+                    gv.bringToFront($set)
+                    if ($(this).attr('data-name') == "D1")
+                        gv.highlight(yearOneSet, true)
+                    if ($(this).attr('data-name') == "D2")
+                        gv.highlight(yearTwoSet, true)
+                    if ($(this).attr('data-name') == "D3")
+                        gv.highlight(yearThreeSet, true)
+                    if ($(this).attr('data-name') == "DM1")
+                        gv.highlight(algSet, true)
+                    if ($(this).attr('data-name') == "DM2")
+                        gv.highlight(csnSet, true)
+                    if ($(this).attr('data-name') == "Valbar")
+                        gv.highlight(electSet, true)
+                    if ($(this).attr('data-name') == "Obligatorisk")
+                        gv.highlight(mandaSet, true)
                 })
+                //Reset selection when 'Esc' is pressed
                 $(document).keydown(function (evt) {
-                  if (evt.keyCode == 27)
-                    gv.highlight()
+                    if (evt.keyCode == 27)
+                        gv.highlight()
                 })
 
-                //Highlight nodes of the selected year
-
-
-//-
                 //Reset selection when pressing outside of a node or the menu
                 var searchis = $("#honke");
-                var menyiss  = $("#ui-id-1")
+                var menyiss  = $("#ui-id-1");
                 $(window).click(function(e) {
                 if (!allNodes.is(e.target) && allNodes.has(e.target).length === 0) // if the target of the click isn't the container...
                     if (!searchis.is(e.target) && searchis.has(e.target).length === 0)    // nor a descendant of the container
@@ -122,15 +118,15 @@ function genGraph(dotFile){
                 button.onclick = function() {
                     var tag =  document.getElementById("tags").value;
                     var taggedCourses = tagMap[tag];
-                    if (taggedCourses !== undefined){
-                        var $nodisar = $()
+                    if (taggedCourses !== undefined) {
+                        var $nodisar = $();
                         for (i = 0; i < taggedCourses.length; i++){
                             $nodisar.push($(".node").filter(function(){ return $(this).attr('data-name') == taggedCourses[i] }));
                         }
                         gv.highlight($nodisar, true)
-                        }
-                    else{
-                        var $emptySet = $(searchButt) //Fulhack
+                    }
+                    else {
+                        var $emptySet = $(searchButt); //Fulhack
                         gv.highlight($emptySet, true)
                     }
                 }
@@ -140,24 +136,16 @@ function genGraph(dotFile){
 }
 
 
+var dnslink ="https://dns.dtek.se/preview/search.php?&query="
 var menu = [
   {
-    title: 'Kursutveckling',
+    title: 'Kurssök',
     action: function(elm, d, i) {
       var courseName =$(elm).attr('data-name');
-      //console.log($(elm).attr('data-name'));
+      console.log($(elm).attr('data-name'));
       console.log('The data for this circle is: ' + courseName);
-      window.open(dnslink + courseName + "/Kursutveckling");
+      window.open(dnslink + labelMap[courseName]);
 
-    }
-  },
-  {
-    title: 'Kursrelationer',
-    action: function(elm, d, i) {
-      var courseName =$(elm).attr('data-name');
-      console.log('You have clicked the second item!');
-      console.log('The data for this circle is: ' + portMap[courseName]);
-      window.open(dnslink + courseName + "/Kursrelationer");
     }
   },
   {
@@ -170,6 +158,3 @@ var menu = [
     }
   }
 ]
-
-
-var dnslink ="https://dns.dtek.se/course_id="
