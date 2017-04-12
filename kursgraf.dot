@@ -137,8 +137,6 @@ digraph {
                         fysik2     [label = "Fysik 2"]
                         web        [label = "Web-applikationer"]
                         deskonstr  [label = "Design/konstruktion\nav grafiska gränssnitt"]
-
-                        algoritmer     [label = "Algorithms", style="wedged,dashed",fillcolor="#4493bb:#E33D31", penwidth=2];
                     }
             }
             //edge[sametail=t2,samehead=h2]
@@ -166,7 +164,7 @@ digraph {
                     // rank = same
                     node [fillcolor="#E33D31"]
                     prolang    [label = "Programming\nlanguage tech"]
-                    //algoritmer [label = "Algorithms"]
+                    algoritmer [label = "Algorithms"]
                     logik      [label = "Logic in CS"]
                     cscience   [label = "The Computer Scientist\nin Society"]
 
@@ -178,7 +176,7 @@ digraph {
                         ml       [label = "Machine learning"]
                         ai       [label = "Artifical intelligence"]
                         models   [label = "Models of computation"]
-                        types    [label = "Types for programs\nand proofs "]
+                        types    [label = "Types for programs\nand proofs"]
                         softEng  [label = "Software eng.\nusing formal meth."]
                         compilerConst [label="Compiler construction"]
                         advFunc  [label = "Advanced\nfunc. prog",fillcolor="#E33D31", style="dashed, filled"]

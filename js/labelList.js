@@ -1,0 +1,83 @@
+var labelMap = {
+  'haskell'        : "Introduktion till funktionell programmering",
+  'diskmat'        : "Inledande diskret matematik",
+
+  'digodat'        :   "Grundläggande datorteknik",
+  'linalg'         :   "Linjär algebra",
+
+  'oop'            :   "Objektorienterad programmering",
+  'analys'         :   "Matematisk analys",
+
+  'datakom'        :   "Datakommunikation",
+  'mop'            :   "Maskinorienterad programmering",
+//------------------------------------------------------------------------------
+  'dtekproj'       :   "Datatekniskt projekt",
+  'matstat'        :   "Matematisk statistik och diskret matematik",
+
+  'dstrukt'        :   "Datastrukturer",
+  'fysik'          :   "Fysik för ingenjörer",
+
+  'syntes'         :   "Digital konstruktion",
+      'matdom'         :   "Matematikens domänspecifika språk",
+      'concurrent'     :   "Parallell programmering",
+
+  'dst'            :   "Datorsystemteknik",
+  'el'             :   "Elektriska kretsar och fält",
+//------------------------------------------------------------------------------
+  'tss'            :   "Transformer, signaler och system",
+      'fysik2'         :   "Fysik 2",
+      'flervar'        :   "Flervariabelanalys",
+      'skon3_1'        :   "Skönlitteratur på engelska för ingenjörer",
+
+  'barsaft'        :   "Modellering av hållbara energisystem",
+  'regler'         :   "Reglerteknik",
+      'skon'           :   "Skönlitteratur på engelska för ingenjörer",
+
+  'web'            :   "Web-applikationer",
+  'databas'        :   "Databaser",
+  'deskonstr'      :   "Design och konstruktion av grafiska gränssnitt",
+  'elektronik_3_3' :   "Elektronik",
+  'kandidat'       :   "Kandidatarbete",
+      'matdom_3_3'     :   "Matematikens domänspecifika språk",
+      'flervar_3_3'    :   "Flervariabelanalys",
+      'concurrent_3_3' :   "Parallell programmering",
+
+      'elektronik_3_4' :   "Elektronik",
+      'flervar_3_4'    :   "Matematisk analys i flera variabler",
+      'matsam'         :   "Matematik och samhälle",
+      'vethis'         :   "Vetenskapshistoria",
+      'teksam'         :   "Teknik och samhälle",
+//------------------------------------------------------------------------------
+  'logik':   "Logic in computer science",
+  'algoritmer':   "Algorithms",
+  'prolang':   "Programming language technology",
+  'cscience':   "The Computer Scientist in Society",
+  'advAlg':   "Advanced algorithms",
+  'discopt':   "Discrete optimization",
+  'ml':   "Machine learning",
+  'ai':   "Artifical intelligence",
+  'models':   "Models of computation",
+  'types':   "Types for programs and proofs",
+  'softEng':   "Software engineering using formal methods",
+  'compilerConst':   "Compiler construction",
+  'advFunc':   "Advanced functional programming",
+  'paraFunc':   "Parallel functional programming",
+  'crypto':   "Cryptography",
+  'langsecurity':   "Language-based security",
+//------------------------------------------------------------------------------
+  'ftcs':   "Fault tolerant computer systems",
+  'computerNetworks':   "Computer networks",
+  'oS':   "Operating systems",
+  'techwrite':   "Technical writing in Computer Systems and Networks",
+  'advDistSys':   "Advanced distributed systems",
+  'networkSecurity':   "Network security",
+  'computerSecurity':   "Computer security",
+  'rts':   "Real time systems",
+  'parallelOrganization':   "Parallel computer organization and design",
+  'parallelRTS':   "Parallel and distributed real-time systems",
+  'distSys':   "Distributed systems",
+  'energyComp':   "Energy aware computing",
+  'routerSwitch':   "Routing and switching technology",
+  'commEng':   "Introduction to communication engineering",
+  'compArch':   "Computer architecture",
+}
